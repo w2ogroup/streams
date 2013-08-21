@@ -116,10 +116,20 @@
                     "dynamic": "true",
                     "properties": {
                         "ids": {
-                            "type": "string"
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
                         },
                         "names": {
-                            "type": "string"
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
                         }
                     }
                 },
@@ -462,35 +472,40 @@
                     "dynamic": "true",
                     "properties": {
                         "entities": {
-                            "javaType": "com.datasift.api.salience.title.Entities",
-                            "type": "object",
-                            "dynamic": "true",
-                            "properties": {
-                                "about": {
-                                    "type": "long"
-                                },
-                                "confident": {
-                                    "type": "long"
-                                },
-                                "evidence": {
-                                    "type": "long"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "sentiment": {
-                                    "type": "long"
-                                },
-                                "themes": {
-                                    "type": "string"
-                                },
-                                "type": {
-                                    "type": "string"
+                            "type": "array",
+                            "items": [
+                                {
+                                    "javaType": "com.datasift.api.salience.title.Entities",
+                                    "type": "object",
+                                    "dynamic": "true",
+                                    "properties": {
+                                        "about": {
+                                            "type": "long"
+                                        },
+                                        "confident": {
+                                            "type": "long"
+                                        },
+                                        "evidence": {
+                                            "type": "long"
+                                        },
+                                        "label": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "sentiment": {
+                                            "type": "long"
+                                        },
+                                        "themes": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
-                            }
+                            ]
                         },
                         "sentiment": {
                             "type": "long"
@@ -1183,6 +1198,31 @@
                 },
                 "videolink": {
                     "type": "string"
+                }
+            }
+        },
+        "w2o": {
+            "type": "object",
+            "dynamic": "true",
+            "properties": {
+                "dateTime": {
+                    "dynamic": "true",
+                    "type": "string"
+                },
+                "tags": {
+                    "dynamic": "true",
+                    "type": "object",
+                    "properties": {
+                        "brand": {
+                            "dynamic": "true",
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         }

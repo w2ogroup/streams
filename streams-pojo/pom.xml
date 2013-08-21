@@ -48,7 +48,20 @@
 			<version>2.1.1</version>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
@@ -92,12 +105,13 @@
 					<addCompileSourceRoot>true</addCompileSourceRoot>
 					<generateBuilders>true</generateBuilders>
 					<sourcePaths>
-                        <sourcePath>src/main/jsonschema/ms/activitystrea</sourcePath>
                         <sourcePath>src/main/jsonschema/com/datasift</sourcePath>
                         <sourcePath>src/main/jsonschema/com/gnip</sourcePath>
                         <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
                         <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
                         <sourcePath>src/main/jsonschema/com/twitter</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/w2o</sourcePath>
+                        <sourcePath>src/main/jsonschema/ms/activitystrea</sourcePath>
                     </sourcePaths>
 					<outputDirectory>src/main/java</outputDirectory>
 				</configuration>
