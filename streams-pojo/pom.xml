@@ -49,6 +49,18 @@
 		</dependency>
 
         <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-xml-databind</artifactId>
+            <version>0.5.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
@@ -114,6 +126,7 @@
                         <sourcePath>src/main/jsonschema/ms/activitystrea</sourcePath>
                     </sourcePaths>
 					<outputDirectory>src/main/java</outputDirectory>
+                    <targetPackage>com.ms</targetPackage>
 				</configuration>
 				<executions>
 					<execution>
@@ -123,6 +136,25 @@
 					</execution>
 				</executions>
 			</plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>jaxb2-maven-plugin</artifactId>-->
+                <!--<version>1.5</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>xjc</id>-->
+                        <!--<goals>-->
+                            <!--<goal>xjc</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<schemaDirectory>${project.basedir}/src/main/xmlschema/facebook</schemaDirectory>-->
+                    <!--<schemaFiles>FacebookEDC.xsd</schemaFiles>-->
+                    <!--<outputDirectory>${project.basedir}/src/main/java/com/gnip/xmlpojo</outputDirectory>-->
+                    <!--&lt;!&ndash;<packageName>com.example.myschema</packageName> &lt;!&ndash; The name of your generated source package &ndash;&gt;&ndash;&gt;-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 		</plugins>
 	</build>
 </project>
