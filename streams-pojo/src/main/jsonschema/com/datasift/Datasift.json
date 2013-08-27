@@ -56,7 +56,7 @@
             }
         },
         "facebook": {
-            "javaType": "com.datasift.api.facebook.Facebook",
+            "javaType": "com.datasift.api.api.Facebook",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -64,7 +64,7 @@
                     "type": "string"
                 },
                 "author": {
-                    "javaType": "com.datasift.api.facebook.Author",
+                    "javaType": "com.datasift.api.api.Author",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -89,7 +89,7 @@
                     "type": "string"
                 },
                 "likes": {
-                    "javaType": "com.datasift.api.facebook.Likes",
+                    "javaType": "com.datasift.api.api.Likes",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -111,7 +111,7 @@
                     "type": "string"
                 },
                 "to": {
-                    "javaType": "com.datasift.api.facebook.To",
+                    "javaType": "com.datasift.api.api.To",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {

@@ -43,6 +43,7 @@
     <module>streams-eip-routes</module>
     <module>streams-web</module>
     <module>streams-pojo</module>
+    <module>streams-mappings</module>
   </modules>
 
   <build>
