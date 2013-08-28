@@ -24,9 +24,9 @@ import java.io.InputStreamReader;
  * Time: 11:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class YoutubeEDCSerDeTest {
+public class YouTubeEDCSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(YoutubeEDCSerDeTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(YouTubeEDCSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 //    XmlMapper mapper = new XmlMapper();
@@ -38,7 +38,7 @@ public class YoutubeEDCSerDeTest {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = YoutubeEDCSerDeTest.class.getResourceAsStream("/YoutubeEDC.xml");
+        InputStream is = YouTubeEDCSerDeTest.class.getResourceAsStream("/YoutubeEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
