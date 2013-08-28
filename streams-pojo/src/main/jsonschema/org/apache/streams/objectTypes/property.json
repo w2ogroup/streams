@@ -16,10 +16,6 @@
     "path" : {
       "type" : "string",
       "description" : "dot delimited path to the property in the target. Ex: streetAddress"
-    },
-    "content" : {
-      "type" : "string",
-      "description" : "Value of the property it can be a scalar or an object"
     }
   },
   "example" : {

@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.gnip.api.GnipActivityFixer;
 import org.apache.streams.Activity;
+import org.json.JSONObject;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,7 @@ public class FacebookEDCAsActivityTest {
     private ObjectMapper jsonMapper = new ObjectMapper();
     XmlMapper xmlMapper = new XmlMapper();
 
+    @Ignore
     @Test
     public void Tests()   throws Exception
     {
@@ -51,14 +54,24 @@ public class FacebookEDCAsActivityTest {
             while (br.ready()) {
                 String line = br.readLine();
                 //LOGGER.debug(line);
+                Object activityObject = xmlMapper.readValue(line, Object.class);
 
-                Activity activity = xmlMapper.readValue(line, Activity.class);
+                String jsonString = jsonMapper.writeValueAsString(activityObject);
 
-                Activity activity2 = GnipActivityFixer.fix(activity);
+                JSONObject jsonObject = new JSONObject(jsonString);
 
-                String des = jsonMapper.writeValueAsString(activity2);
+                JSONObject fixedObject = GnipActivityFixer.fix(jsonObject);
 
-                LOGGER.info(des);
+                Activity activity = null;
+                try {
+                    activity = jsonMapper.readValue(fixedObject.toString(), Activity.class);
+                } catch( Exception e ) {
+                    LOGGER.error(jsonObject.toString());
+                    LOGGER.error(fixedObject.toString());
+                    e.printStackTrace();
+                    Assert.fail();
+                }
+                //LOGGER.info(activity);
             }
         } catch( Exception e ) {
             LOGGER.error(e.getMessage());

@@ -5,7 +5,9 @@ package com.gnip.api.test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.gnip.api.GnipActivityFixer;
 import org.apache.streams.Activity;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -53,12 +55,19 @@ public class YoutubeEDCAsActivityTest {
         try {
             while (br.ready()) {
                 String line = br.readLine();
-                LOGGER.debug(line);
+                //LOGGER.debug(line);
 
-                Activity activity = xmlMapper.readValue(line, Activity.class);
+                Object activityObject = xmlMapper.readValue(line, Object.class);
 
-                String des = jsonMapper.writeValueAsString(activity);
-                LOGGER.debug(des);
+                String jsonString = jsonMapper.writeValueAsString(activityObject);
+
+                JSONObject jsonObject = new JSONObject(jsonString);
+
+                JSONObject fixedObject = GnipActivityFixer.fix(jsonObject);
+
+                Activity activity = jsonMapper.readValue(fixedObject.toString(), Activity.class);
+
+                //LOGGER.debug(des);
             }
         } catch( Exception e ) {
             e.printStackTrace();
