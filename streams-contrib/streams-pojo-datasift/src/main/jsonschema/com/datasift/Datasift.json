@@ -1,16 +1,16 @@
 {
     "type": "object",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "javaType": "com.datasift.api.Datasift",
+    "javaType": "com.datasift.pojo.Datasift",
     "properties": {
         "blog": {
-            "javaType": "com.datasift.api.blog.Blog",
+            "javaType": "com.datasift.pojo.blog.Blog",
             "type": "object",
             "dynamic": "true",
             "properties": {
                 "author": {
                     "type": "object",
-                    "javaType": "com.datasift.api.blog.BlogAuthor",
+                    "javaType": "com.datasift.pojo.blog.BlogAuthor",
                     "dynamic": "true",
                     "properties": {
                         "link": {
@@ -56,7 +56,7 @@
             }
         },
         "facebook": {
-            "javaType": "com.datasift.api.api.Facebook",
+            "javaType": "com.datasift.pojo.api.Facebook",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -64,7 +64,7 @@
                     "type": "string"
                 },
                 "author": {
-                    "javaType": "com.datasift.api.api.Author",
+                    "javaType": "com.datasift.pojo.api.Author",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -89,7 +89,7 @@
                     "type": "string"
                 },
                 "likes": {
-                    "javaType": "com.datasift.api.api.Likes",
+                    "javaType": "com.datasift.pojo.api.Likes",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -111,7 +111,7 @@
                     "type": "string"
                 },
                 "to": {
-                    "javaType": "com.datasift.api.api.To",
+                    "javaType": "com.datasift.pojo.api.To",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -139,12 +139,12 @@
             }
         },
         "interaction": {
-            "javaType": "com.datasift.api.interaction.Interaction",
+            "javaType": "com.datasift.pojo.interaction.Interaction",
             "type": "object",
             "dynamic": "true",
             "properties": {
                 "author": {
-                    "javaType": "com.datasift.api.interaction.Author",
+                    "javaType": "com.datasift.pojo.interaction.Author",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -175,7 +175,7 @@
                     "type": "string"
                 },
                 "geo": {
-                    "javaType": "com.datasift.api.interaction.Geo",
+                    "javaType": "com.datasift.pojo.interaction.Geo",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -221,7 +221,7 @@
             }
         },
         "klout": {
-            "javaType": "com.datasift.api.klout.Klout",
+            "javaType": "com.datasift.pojo.klout.Klout",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -231,7 +231,7 @@
             }
         },
         "language": {
-            "javaType": "com.datasift.api.interaction.Language",
+            "javaType": "com.datasift.pojo.interaction.Language",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -244,7 +244,7 @@
             }
         },
         "links": {
-            "javaType": "com.datasift.api.interaction.Links",
+            "javaType": "com.datasift.pojo.interaction.Links",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -269,7 +269,7 @@
                 },
                 "meta": {
                     "dynamic": "true",
-                    "javaType": "com.datasift.api.interaction.Meta",
+                    "javaType": "com.datasift.pojo.interaction.Meta",
                     "type": "object",
                     "properties": {
                         "charset": {
@@ -316,7 +316,7 @@
                             "type": "array",
                             "items": [
                                 {
-                                    "javaType": "com.datasift.api.interaction.meta.OpenGraph",
+                                    "javaType": "com.datasift.pojo.interaction.meta.OpenGraph",
                                     "type": "object",
                                     "dynamic": "true",
                                     "properties": {
@@ -346,7 +346,7 @@
                             "type": "array",
                             "items": [
                                 {
-                                    "javaType": "com.datasift.api.interaction.meta.Twitter",
+                                    "javaType": "com.datasift.pojo.interaction.meta.Twitter",
                                     "type": "object",
                                     "dynamic": "true",
                                     "properties": {
@@ -416,12 +416,12 @@
             }
         },
         "salience": {
-            "javaType": "com.datasift.api.salience.Salience",
+            "javaType": "com.datasift.pojo.salience.Salience",
             "type": "object",
             "dynamic": "true",
             "properties": {
                 "content": {
-                    "javaType": "com.datasift.api.salience.content.Content",
+                    "javaType": "com.datasift.pojo.salience.content.Content",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -429,7 +429,7 @@
                             "type": "array",
                             "items": [
                                 {
-                                    "javaType": "com.datasift.api.salience.content.Entities",
+                                    "javaType": "com.datasift.pojo.salience.content.Entities",
                                     "type": "object",
                                     "dynamic": "true",
                                     "properties": {
@@ -467,7 +467,7 @@
                     }
                 },
                 "title": {
-                    "javaType": "com.datasift.api.salience.title.Title",
+                    "javaType": "com.datasift.pojo.salience.title.Title",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -475,7 +475,7 @@
                             "type": "array",
                             "items": [
                                 {
-                                    "javaType": "com.datasift.api.salience.title.Entities",
+                                    "javaType": "com.datasift.pojo.salience.title.Entities",
                                     "type": "object",
                                     "dynamic": "true",
                                     "properties": {
@@ -515,7 +515,7 @@
             }
         },
         "trends": {
-            "javaType": "com.datasift.api.trends.Trends",
+            "javaType": "com.datasift.pojo.trends.Trends",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -546,7 +546,7 @@
             }
         },
         "twitter": {
-            "javaType": "com.datasift.api.twitter.Twitter",
+            "javaType": "com.datasift.pojo.twitter.Twitter",
             "type": "object",
             "dynamic": "true",
             "properties": {
@@ -565,7 +565,7 @@
                     "type": "string"
                 },
                 "geo": {
-                    "javaType": "com.datasift.api.twitter.Geo",
+                    "javaType": "com.datasift.pojo.twitter.Geo",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -612,7 +612,7 @@
                     "type": "array",
                     "items": [
                         {
-                            "javaType": "com.datasift.api.twitter.Media",
+                            "javaType": "com.datasift.pojo.twitter.Media",
                             "type": "object",
                             "dynamic": "true",
                             "properties": {
@@ -723,7 +723,7 @@
                     ]
                 },
                 "place": {
-                    "javaType": "com.datasift.api.twitter.Place",
+                    "javaType": "com.datasift.pojo.twitter.Place",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -759,7 +759,7 @@
                     }
                 },
                 "retweet": {
-                    "javaType": "com.datasift.api.twitter.Retweet",
+                    "javaType": "com.datasift.pojo.twitter.Retweet",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -913,7 +913,7 @@
                             "type": "string"
                         },
                         "user": {
-                            "javaType": "com.datasift.api.twitter.User",
+                            "javaType": "com.datasift.pojo.twitter.User",
                             "type": "object",
                             "dynamic": "true",
                             "properties": {
@@ -973,7 +973,7 @@
                     }
                 },
                 "retweeted": {
-                    "javaType": "com.datasift.api.twitter.Retweeted",
+                    "javaType": "com.datasift.pojo.twitter.Retweeted",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -1095,7 +1095,7 @@
                     "type": "string"
                 },
                 "user": {
-                    "javaType": "com.datasift.api.interaction.User",
+                    "javaType": "com.datasift.pojo.interaction.User",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {
@@ -1158,12 +1158,12 @@
             }
         },
         "youtube": {
-            "javaType": "com.datasift.api.youtube.YouTube",
+            "javaType": "com.datasift.pojo.youtube.YouTube",
             "type": "object",
             "dynamic": "true",
             "properties": {
                 "author": {
-                    "javaType": "com.datasift.api.youtube.Author",
+                    "javaType": "com.datasift.pojo.youtube.Author",
                     "type": "object",
                     "dynamic": "true",
                     "properties": {

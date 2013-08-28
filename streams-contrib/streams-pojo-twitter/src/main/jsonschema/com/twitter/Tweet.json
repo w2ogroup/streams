@@ -2,7 +2,7 @@
     "type": "object",
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "#",
-    "javaType" : "com.twitter.api.Tweet",
+    "javaType" : "com.twitter.pojo.Tweet",
     "properties": {
         "text": {
             "type": "string"

@@ -31,7 +31,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/java</directory>
+                            <directory>src/main/java/com/moreover/pojo</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -56,7 +56,7 @@
                         <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
                     </sourcePaths>
                     <outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>org.apache.streams</targetPackage>
+                    <targetPackage>com.moreover.pojo</targetPackage>
                 </configuration>
                 <executions>
                     <execution>
