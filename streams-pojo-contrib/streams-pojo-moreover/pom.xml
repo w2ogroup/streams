@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-pojo-sysomos</artifactId>
+    <artifactId>streams-pojo-moreover</artifactId>
 
     <dependencies>
 
@@ -102,7 +102,7 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
                     </sourcePaths>
                     <outputDirectory>src/main/java</outputDirectory>
                     <targetPackage>org.apache.streams</targetPackage>
@@ -116,6 +116,5 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 </project>
