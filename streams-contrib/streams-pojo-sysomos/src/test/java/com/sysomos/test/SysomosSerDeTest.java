@@ -1,6 +1,6 @@
-package com.twitter.api.test;
+package com.sysomos.test;
 
-import com.twitter.api.Tweet;
+import com.sysomos.api.Sysomos;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;
@@ -20,9 +20,9 @@ import java.io.InputStreamReader;
  * Time: 5:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TweetSerDeTest {
+public class SysomosSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TweetSerDeTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(SysomosSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -34,7 +34,7 @@ public class TweetSerDeTest {
         mapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationConfig.Feature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = TweetSerDeTest.class.getResourceAsStream("/twitter_jsons.txt");
+        InputStream is = SysomosSerDeTest.class.getResourceAsStream("/sysomos_jsons.txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
 
@@ -43,7 +43,7 @@ public class TweetSerDeTest {
                 String line = br.readLine();
                 LOGGER.debug(line);
 
-                Tweet ser = mapper.readValue(line, Tweet.class);
+                Sysomos ser = mapper.readValue(line, Sysomos.class);
 
                 String des = mapper.writeValueAsString(ser);
                 LOGGER.debug(des);

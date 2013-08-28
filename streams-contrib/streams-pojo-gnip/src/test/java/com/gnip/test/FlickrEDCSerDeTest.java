@@ -1,16 +1,21 @@
-package com.gnip.api.test;
+package com.gnip.test;
 
+//import org.codehaus.jackson.map.ObjectMapper;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+//import com.fasterxml.jackson.xml.XmlMapper;
+//import com.gnip.xmlpojo.generated.FacebookEDC;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,9 +24,9 @@ import java.io.InputStreamReader;
  * Time: 11:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class FacebookEDCSerDeTest {
+public class FlickrEDCSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FacebookEDCSerDeTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FlickrEDCSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 //    XmlMapper mapper = new XmlMapper();
@@ -33,7 +38,7 @@ public class FacebookEDCSerDeTest {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = FacebookEDCSerDeTest.class.getResourceAsStream("/src/test/resources/FacebookEDC.xml");
+        InputStream is = FlickrEDCSerDeTest.class.getResourceAsStream("/src/test/resources/FlickrEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -41,6 +46,7 @@ public class FacebookEDCSerDeTest {
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE, Boolean.FALSE);
 
         ObjectMapper jsonMapper = new ObjectMapper();
 
@@ -56,7 +62,7 @@ public class FacebookEDCSerDeTest {
                 //LOGGER.debug(jsonObject);
             }
         } catch( Exception e ) {
-            LOGGER.error(e.getMessage());
+            e.printStackTrace();
             Assert.fail();
         }
     }

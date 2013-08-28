@@ -1,21 +1,16 @@
-package com.gnip.api.test;
+package com.gnip.test;
 
-//import org.codehaus.jackson.map.ObjectMapper;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-//import com.fasterxml.jackson.xml.XmlMapper;
-//import com.gnip.xmlpojo.generated.FacebookEDC;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,9 +19,9 @@ import java.io.InputStreamReader;
  * Time: 11:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class YouTubeEDCSerDeTest {
+public class FacebookEDCSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(YouTubeEDCSerDeTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FacebookEDCSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 //    XmlMapper mapper = new XmlMapper();
@@ -38,7 +33,7 @@ public class YouTubeEDCSerDeTest {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = YouTubeEDCSerDeTest.class.getResourceAsStream("/src/test/resources/YoutubeEDC.xml");
+        InputStream is = FacebookEDCSerDeTest.class.getResourceAsStream("/src/test/resources/FacebookEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -61,7 +56,7 @@ public class YouTubeEDCSerDeTest {
                 //LOGGER.debug(jsonObject);
             }
         } catch( Exception e ) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             Assert.fail();
         }
     }

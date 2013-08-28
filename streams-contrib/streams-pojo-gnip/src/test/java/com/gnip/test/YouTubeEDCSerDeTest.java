@@ -1,4 +1,4 @@
-package com.gnip.api.test;
+package com.gnip.test;
 
 //import org.codehaus.jackson.map.ObjectMapper;
 
@@ -24,9 +24,9 @@ import java.io.InputStreamReader;
  * Time: 11:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class FlickrEDCSerDeTest {
+public class YouTubeEDCSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FlickrEDCSerDeTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(YouTubeEDCSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 //    XmlMapper mapper = new XmlMapper();
@@ -38,7 +38,7 @@ public class FlickrEDCSerDeTest {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = FlickrEDCSerDeTest.class.getResourceAsStream("/src/test/resources/FlickrEDC.xml");
+        InputStream is = YouTubeEDCSerDeTest.class.getResourceAsStream("/src/test/resources/YoutubeEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -46,7 +46,6 @@ public class FlickrEDCSerDeTest {
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
-        xmlMapper.configure(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE, Boolean.FALSE);
 
         ObjectMapper jsonMapper = new ObjectMapper();
 
