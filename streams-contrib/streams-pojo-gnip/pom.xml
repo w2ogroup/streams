@@ -3,62 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>streams-project</artifactId>
         <groupId>org.apache.streams</groupId>
+        <artifactId>streams-contrib</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-pojo-sysomos</artifactId>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>com.googlecode.jsonschema2pojo</groupId>
-            <artifactId>jsonschema2pojo-core</artifactId>
-            <version>0.3.7</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml</groupId>
-            <artifactId>jackson-xml-databind</artifactId>
-            <version>0.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.9</version>
-        </dependency>
-
-    </dependencies>
+    <artifactId>streams-pojo-gnip</artifactId>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -102,7 +53,7 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/datasift</sourcePath>
                     </sourcePaths>
                     <outputDirectory>src/main/java</outputDirectory>
                     <targetPackage>org.apache.streams</targetPackage>
@@ -116,6 +67,5 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 </project>
