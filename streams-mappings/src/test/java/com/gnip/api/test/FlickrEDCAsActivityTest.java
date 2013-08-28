@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.gnip.api.GnipActivityFixer;
-import org.apache.streams.Activity;
+import org.apache.streams.pojo.Activity;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Ignore;
