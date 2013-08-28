@@ -18,6 +18,7 @@
         <module>streams-pojo-sysomos</module>
         <module>streams-pojo-twitter</module>
         <module>streams-pojo-moreover</module>
+        <module>streams-pojo-facebook</module>
     </modules>
 
     <dependencies>
