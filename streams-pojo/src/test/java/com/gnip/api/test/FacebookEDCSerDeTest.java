@@ -1,7 +1,5 @@
 package com.gnip.api.test;
 
-//import org.codehaus.jackson.map.ObjectMapper;
-import org.apache.streams.Activity;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
