@@ -1,7 +1,7 @@
 {
   "type" : "object",
   "title" : "activity",
-  "javaType": "org.apache.streams.Activity",
+  "javaType": "org.apache.streams.pojo.Activity",
   "description" : "An activity construct recounts what an actor did to an object in the past. If there is no actor it simply describes the change.",
   "additionalProperties": true,
   "properties": {

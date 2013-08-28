@@ -123,16 +123,16 @@
 					<addCompileSourceRoot>true</addCompileSourceRoot>
 					<generateBuilders>true</generateBuilders>
 					<sourcePaths>
-                        <sourcePath>src/main/jsonschema/org/apache/streams</sourcePath>
-                        <sourcePath>src/main/jsonschema/org/apache/streams/objectTypes</sourcePath>
-                        <sourcePath>src/main/jsonschema/org/apache/streams/verbs</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/objectTypes</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/verbs</sourcePath>
                         <sourcePath>src/main/jsonschema/com/twitter</sourcePath>
                         <sourcePath>src/main/jsonschema/com/datasift</sourcePath>
                         <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
                         <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
                     </sourcePaths>
 					<outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>org.apache.streams</targetPackage>
+                    <targetPackage>org.apache.streams.pojo</targetPackage>
 				</configuration>
 				<executions>
 					<execution>
