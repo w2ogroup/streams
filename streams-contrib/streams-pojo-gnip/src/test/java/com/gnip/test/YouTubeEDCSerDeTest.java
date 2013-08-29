@@ -1,21 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package com.gnip.test;
 
 //import org.codehaus.jackson.map.ObjectMapper;
@@ -23,11 +5,7 @@ package com.gnip.test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.gnip.api.GnipActivityFixer;
-import org.apache.streams.pojo.Activity;
-import org.json.JSONObject;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,14 +24,13 @@ import java.io.InputStreamReader;
  * Time: 11:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class FlickrEDCAsActivityTest {
+public class YouTubeEDCSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FlickrEDCAsActivityTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(YouTubeEDCSerDeTest.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 //    XmlMapper mapper = new XmlMapper();
 
-    @Ignore
     @Test
     public void Tests()   throws Exception
     {
@@ -61,7 +38,7 @@ public class FlickrEDCAsActivityTest {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = FlickrEDCAsActivityTest.class.getResourceAsStream("/FlickrEDC.xml");
+        InputStream is = YouTubeEDCSerDeTest.class.getResourceAsStream("/YoutubeEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -79,22 +56,9 @@ public class FlickrEDCAsActivityTest {
 
                 Object activityObject = xmlMapper.readValue(line, Object.class);
 
-                String jsonString = jsonMapper.writeValueAsString(activityObject);
+                String jsonObject = jsonMapper.writeValueAsString(activityObject);
 
-                JSONObject jsonObject = new JSONObject(jsonString);
-
-                JSONObject fixedObject = GnipActivityFixer.fix(jsonObject);
-
-                Activity activity = null;
-                try {
-                    activity = jsonMapper.readValue(fixedObject.toString(), Activity.class);
-                } catch( Exception e ) {
-                    LOGGER.error(jsonObject.toString());
-                    LOGGER.error(fixedObject.toString());
-                    e.printStackTrace();
-                    Assert.fail();
-                }
-                //LOGGER.debug(des);
+                //LOGGER.debug(jsonObject);
             }
         } catch( Exception e ) {
             e.printStackTrace();

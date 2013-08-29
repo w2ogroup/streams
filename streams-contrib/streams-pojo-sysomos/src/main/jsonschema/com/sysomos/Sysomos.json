@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "javaType": "com.sysomos.pojo.Sysomos",
+    "id": "#",
+    "properties": {
+        "tweetJsonLink": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "location": {
+            "dynamic": "true",
+            "properties": {
+                "locationString": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "country": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            }
+        },
+        "link": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "twitterFollowing": {
+            "type": "string"
+        },
+        "twitterFollowers": {
+            "type": "string"
+        },
+        "tweetid": {
+            "type": "string"
+        },
+        "mediaType": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "docid": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "sentiment": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "time": {
+            "format": "dateOptionalTime",
+            "type": "date"
+        },
+        "title": {
+            "type": "string"
+        },
+        "tweetHbLink": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "influenceLevel": {
+            "type": "string"
+        }
+    }
+}
