@@ -19,34 +19,25 @@
 package org.apache.streams.data;
 
 import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.Generator;
+import org.apache.streams.pojo.Provider;
 
 /**
- * Serializes and deserializes Activities from a String
+ * Serializes activity posts
  */
-public interface ActivitySerializer {
+public class FacebookPostActivitySerializer implements ActivitySerializer {
+    @Override
+    public String serializationFormat() {
+        return "facebook_post_json_v1";
+    }
 
-    /**
-     * Gets the supported content type that can be deserialized/serialized
-     *
-     * @return A string representing the format name.  Can be an IETF MIME type or other
-     */
-    String serializationFormat();
+    @Override
+    public String serialize(Activity deserialized) {
+        throw new UnsupportedOperationException();
+    }
 
-    /**
-     * Converts the activity to a String representation.
-     *
-     * @param deserialized the string
-     * @return a fully populated Activity object
-     */
-    String serialize(Activity deserialized);
-
-    /**
-     * Converts a string into an Activity
-     *
-     *
-     *
-     * @param serialized the string representation
-     * @return a fully populated Activity object
-     */
-    Activity deserialize(String serialized);
+    @Override
+    public Activity deserialize(String serialized) {
+        return null;
+    }
 }
