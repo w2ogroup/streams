@@ -66,6 +66,7 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
     }
 
     private void fixContentFromSummary(Activity activity) {
+        //we MUST have a content field set, so choose the best option
         if(activity.getContent() == null) {
             activity.setContent(activity.getAdditionalProperties().containsKey("summary") ?
                     (String) activity.getAdditionalProperties().get("summary") :
@@ -74,6 +75,7 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
     }
 
     private void fixObjectId(Activity activity) {
+        //An artifact of schema generation, the default value is {link}
         if(activity.getObject().getId().equals("{link}")) {
             activity.getObject().setId(null);
         }
