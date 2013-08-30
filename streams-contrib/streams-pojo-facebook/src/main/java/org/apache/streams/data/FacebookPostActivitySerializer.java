@@ -53,6 +53,7 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
 
     @Override
     public Activity deserialize(String serialized) {
+        //Deserialize the JSON string into a Jackson JsonNode
         JsonNode node = jsonToJsonNode(serialized);
         Map.Entry<String, JsonNode> field = getObjectType(node);
         Activity activity = new Activity();
@@ -200,16 +201,6 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
 
     private void addId(Activity activity, JsonNode value) {
         activity.setId(getActivityId(PROVIDER_NAME, value.asText()));
-    }
-
-    /**
-     * Gets a formatted activity ID
-     * @param providerName name of the provider
-     * @param activityId ID of the provider
-     * @return id:<providerName>:activities:<activityId>
-     */
-    private String getActivityId(String providerName, String activityId) {
-        return String.format("id:%s:activities:%s", providerName, activityId);
     }
 
     private void addObjectLink(Activity activity, JsonNode value) {

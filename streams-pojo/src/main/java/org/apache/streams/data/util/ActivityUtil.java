@@ -63,4 +63,14 @@ public class ActivityUtil {
         return String.format("id:%s:%ss:%s", provider, objectType, objectId);
     }
 
+    /**
+     * Gets a formatted activity ID
+     * @param providerName name of the provider
+     * @param activityId ID of the provider
+     * @return id:<providerName>:activities:<activityId>
+     */
+    public static String getActivityId(String providerName, String activityId) {
+        return String.format("id:%s:activities:%s", providerName, activityId);
+    }
+
 }
