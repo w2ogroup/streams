@@ -1,0 +1,267 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "#",
+    "javaType" : "com.instagram.pojo.Instagram",
+    "properties": {
+        "caption": {
+            "type": "object",
+            "properties": {
+                "created_time": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.User",
+                    "properties": {
+                        "bio": {
+                            "type": "string"
+                        },
+                        "full_name": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "profile_picture": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "website": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            }
+        },
+        "comments": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "javaType" : "com.instagram.pojo.Comment",
+                        "properties": {
+                            "created_time": {
+                                "type": "string"
+                            },
+                            "from": {
+                                "type": "object",
+                                "javaType" : "com.instagram.pojo.User",
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "profile_picture": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "text": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "created_time": {
+            "type": "string"
+        },
+        "filter": {
+            "type": "string"
+        },
+        "id": {
+            "type": "string"
+        },
+        "images": {
+            "type": "object",
+            "properties": {
+                "low_resolution": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.Media",
+                    "properties": {
+                        "height": {
+                            "type": "integer"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "standard_resolution": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.Media",
+                    "properties": {
+                        "height": {
+                            "type": "integer"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "thumbnail": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.Media",
+                    "properties": {
+                        "height": {
+                            "type": "integer"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "likes": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "javaType" : "com.instagram.pojo.User",
+                        "properties": {
+                            "full_name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "profile_picture": {
+                                "type": "string"
+                            },
+                            "username": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "link": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "type": {
+            "type": "string"
+        },
+        "user": {
+            "type": "object",
+            "javaType" : "com.instagram.pojo.User",
+            "properties": {
+                "bio": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "profile_picture": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                }
+            }
+        },
+        "users_in_photo": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "javaType" : "com.instagram.pojo.User",
+                "properties": {
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "videos": {
+            "type": "object",
+            "properties": {
+                "low_resolution": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.Media",
+                    "properties": {
+                        "height": {
+                            "type": "integer"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "standard_resolution": {
+                    "type": "object",
+                    "javaType" : "com.instagram.pojo.Media",
+                    "properties": {
+                        "height": {
+                            "type": "integer"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
