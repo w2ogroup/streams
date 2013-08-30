@@ -14,12 +14,12 @@
     <packaging>pom</packaging>
 
     <properties>
-        <jackson.version>2.1.1</jackson.version>
         <jsonschema2pojo.version>0.3.7</jsonschema2pojo.version>
         <junit.version>4.11</junit.version>
         <slf4j.version>1.6.1</slf4j.version>
         <logback.version>1.0.9</logback.version>
         <commons-io.version>2.4</commons-io.version>
+        <jackson.version>2.2.1</jackson.version>
     </properties>
 
     <modules>
@@ -42,21 +42,8 @@
                 <groupId>com.googlecode.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-core</artifactId>
                 <version>${jsonschema2pojo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-xml</artifactId>
-                <version>${jackson.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -74,20 +61,6 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
-                <artifactId>jsonschema2pojo-core</artifactId>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml</groupId>
-                <artifactId>jackson-xml-databind</artifactId>
-                <version>0.5.0</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.apache.streams</groupId>
                 <artifactId>streams-pojo</artifactId>

@@ -18,37 +18,120 @@
 package org.apache.streams.data;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonFactory;
+import org.apache.streams.pojo.Activity;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Pattern;
+
+import static java.util.regex.Pattern.matches;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 public class FacebookPostActivitySerializerTest {
+    Node fields;
+    JsonNode json;
+    ActivitySerializer serializer = new FacebookPostActivitySerializer();
 
     @Before
-    public void setup() throws IOException { }
+    public void setup() throws IOException {
+        json = getJsonNode();
+        fields = discover(json);
+    }
 
     @Test
-    public void discover() {
-        JsonNode node = getJsonNode();
+    public void loadData() {
+        for (JsonNode item : json) {
+            Activity activity = serializer.deserialize(getString(item));
+            assertThat(activity, is(not(nullValue())));
+            assertThat(activity.getActor(), is(not(nullValue())));
+            assertThat(matches("id:facebook:people:[a-zA-Z0-9]*", activity.getActor().getId()), is(true));
+            assertThat(activity.getActor().getDisplayName(), is(not(nullValue())));
+            assertThat(activity.getObject(), is(not(nullValue())));
+            if(activity.getObject().getId() != null) {
+                assertThat(matches("id:facebook:[a-z]*s:[a-zA-Z0-9]*", activity.getObject().getId()), is(true));
+            }
+            assertThat(activity.getObject().getObjectType(), is(not(nullValue())));
+            assertThat(activity.getContent(), is(not(nullValue())));
+            assertThat(activity.getProvider().getId(), is(equalTo("id:providers:facebook")));
+        }
+    }
+
+
+
+
+    public Node discover(JsonNode node) {
         Node root = new Node(null, "root");
-        if (node != null && node.isArray()) {
+        if (node == null || !node.isArray()) {
+            throw new RuntimeException("No data");
+        } else {
             for (JsonNode item : node) {
                 mapNode(root, item);
             }
         }
-        printTree(root, "");
+        //printTree(root, "");
+        //printUniqueFields(root);
+        return root;
+    }
+
+
+    private String getString(JsonNode jsonNode)  {
+        try {
+            return new ObjectMapper().writeValueAsString(jsonNode);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void printUniqueFields(Node root) {
+        Map<String, Set<String>> fieldsByType = new HashMap<String, Set<String>>();
+        fieldsByType.put("objectType", new HashSet<String>());
+        for(Node child : root.getChildren().values()) {
+           for(Node grandChild : child.getChildren().values()) {
+               fieldsByType.get("objectType").add(grandChild.getName());
+               addUniqueValues(grandChild, fieldsByType);
+           }
+        }
+        for(Map.Entry<String, Set<String>> entry : fieldsByType.entrySet()) {
+            System.out.println(entry.getKey());
+            List<String> value = new ArrayList<String>(entry.getValue());
+            Collections.sort(value);
+            for(String val : value) {
+                System.out.println("      " + val);
+            }
+            System.out.println();
+            System.out.println();
+        }
+    }
+
+    private void addUniqueValues(Node child, Map<String, Set<String>> fieldsByType) {
+        if(!fieldsByType.containsKey(child.getName()) && !isNumber(child.getName())) {
+            fieldsByType.put(child.getName(), new HashSet<String>());
+        }
+        for(Map.Entry<String, Node> gc : child.getChildren().entrySet()) {
+            if(!isNumber(gc.getKey()))
+                fieldsByType.get(child.getName()).add(gc.getKey());
+            addUniqueValues(gc.getValue(), fieldsByType);
+        }
+    }
+
+    private boolean isNumber(String key) {
+        Pattern p = Pattern.compile("[0-9]*");
+        return p.matcher(key.trim()).matches();
     }
 
     private void printTree(Node node, String spacer) {
         System.out.println(String.format("%s %s (%s)", spacer, node.getName(), node.getType()));
-        for(Node child : node.getChildren().values()) {
+        List<Node> children = new ArrayList<Node>(node.getChildren().values());
+        Collections.sort(children);
+        for(Node child : children) {
             printTree(child, spacer + "      ");
         }
     }
@@ -86,7 +169,7 @@ public class FacebookPostActivitySerializerTest {
         return node;
     }
 
-    private static class Node {
+    private static class Node implements Comparable<Node>{
         Node parent;
         String name;
         String type;
@@ -127,6 +210,11 @@ public class FacebookPostActivitySerializerTest {
 
         private void setType(String type) {
             this.type = type;
+        }
+
+        @Override
+        public int compareTo(Node node) {
+            return this.name.compareTo(node.name);
         }
     }
 
