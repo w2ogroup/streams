@@ -162,6 +162,9 @@
                 }
             }
         },
+        "user_has_liked": {
+            "type": "boolean"
+        },
         "users_in_photo": {
             "type": "array",
             "items": {
