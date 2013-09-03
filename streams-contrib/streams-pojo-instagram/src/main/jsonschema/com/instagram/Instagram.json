@@ -8,6 +8,7 @@
             "type": "object",
             "properties": {
                 "created_time": {
+                    "format": "utc-millisec",
                     "type": "string"
                 },
                 "from": {
@@ -34,6 +35,7 @@
                         "javaType" : "com.instagram.pojo.Comment",
                         "properties": {
                             "created_time": {
+                                "format": "utc-millisec",
                                 "type": "string"
                             },
                             "from": {
@@ -51,6 +53,7 @@
             }
         },
         "created_time": {
+            "format": "utc-millisec",
             "type": "string"
         },
         "filter": {
@@ -70,6 +73,7 @@
                             "type": "integer"
                         },
                         "url": {
+                            "format": "uri",
                             "type": "string"
                         },
                         "width": {
@@ -100,7 +104,28 @@
             }
         },
         "link": {
+            "format": "uri",
             "type": "string"
+        },
+        "location": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "street_address": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
         },
         "tags": {
             "type": "array",
@@ -125,12 +150,14 @@
                     "type": "string"
                 },
                 "profile_picture": {
+                    "format": "uri",
                     "type": "string"
                 },
                 "username": {
                     "type": "string"
                 },
                 "website": {
+                    "format": "uri",
                     "type": "string"
                 }
             }
