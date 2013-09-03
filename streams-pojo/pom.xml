@@ -136,25 +136,25 @@
 					</execution>
 				</executions>
 			</plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>jaxb2-maven-plugin</artifactId>-->
-                <!--<version>1.5</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>xjc</id>-->
-                        <!--<goals>-->
-                            <!--<goal>xjc</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<schemaDirectory>${project.basedir}/src/main/xmlschema/facebook</schemaDirectory>-->
-                    <!--<schemaFiles>FacebookEDC.xsd</schemaFiles>-->
-                    <!--<outputDirectory>${project.basedir}/src/main/java/com/gnip/xmlpojo</outputDirectory>-->
-                    <!--&lt;!&ndash;<packageName>com.example.myschema</packageName> &lt;!&ndash; The name of your generated source package &ndash;&gt;&ndash;&gt;-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaDirectory>${project.basedir}/src/main/xmlschema/facebook</schemaDirectory>
+                    <schemaFiles>FacebookEDC.xsd</schemaFiles>
+                    <outputDirectory>${project.basedir}/src/main/java/com/gnip/xmlpojo</outputDirectory>
+                    <!--<packageName>com.example.myschema</packageName> &lt;!&ndash; The name of your generated source package &ndash;&gt;-->
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>
