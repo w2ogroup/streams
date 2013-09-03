@@ -45,32 +45,35 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.1.1</version>
 		</dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.1.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml</groupId>
             <artifactId>jackson-xml-databind</artifactId>
-            <version>0.5.0</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>test</scope>
+            <scope>com.gnip.api.facebook.test.test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.9</version>
         </dependency>
 
     </dependencies>
@@ -95,7 +98,7 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>src/main/java</directory>
+							<directory>src/main/java/org/apache/streams/pojo</directory>
 							<includes>
 								<include>**/*</include>
 							</includes>
@@ -117,16 +120,12 @@
 					<addCompileSourceRoot>true</addCompileSourceRoot>
 					<generateBuilders>true</generateBuilders>
 					<sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/datasift</sourcePath>
-                        <sourcePath>src/main/jsonschema/com/gnip</sourcePath>
-                        <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
-                        <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
-                        <sourcePath>src/main/jsonschema/com/twitter</sourcePath>
-                        <sourcePath>src/main/jsonschema/com/w2o</sourcePath>
-                        <sourcePath>src/main/jsonschema/ms/activitystrea</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/objectTypes</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/verbs</sourcePath>
                     </sourcePaths>
 					<outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>com.ms</targetPackage>
+                    <targetPackage>org.apache.streams.pojo</targetPackage>
 				</configuration>
 				<executions>
 					<execution>
@@ -136,25 +135,6 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/xmlschema/facebook</schemaDirectory>
-                    <schemaFiles>FacebookEDC.xsd</schemaFiles>
-                    <outputDirectory>${project.basedir}/src/main/java/com/gnip/xmlpojo</outputDirectory>
-                    <!--<packageName>com.example.myschema</packageName> &lt;!&ndash; The name of your generated source package &ndash;&gt;-->
-                </configuration>
-            </plugin>
-		</plugins>
+        </plugins>
 	</build>
 </project>

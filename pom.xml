@@ -19,49 +19,83 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.apache.streams</groupId>
-  <artifactId>streams-project</artifactId>
-  <version>0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>org.apache.streams</groupId>
+        <artifactId>streams-master</artifactId>
+        <version>0.2-incubating-SNAPSHOT</version>
+    </parent>
 
-  <name>Apache Streams Project</name>
+    <artifactId>streams-project</artifactId>
+    <version>0.1-SNAPSHOT</version>
 
-  <description>Apache Streams Project</description>
+    <name>Apache Streams Project</name>
 
-  <properties>
-    <org.osgi.service.http.port>8080</org.osgi.service.http.port>
-    <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
-  </properties>
+    <description>Apache Streams Project</description>
 
-  <packaging>pom</packaging>
+    <properties>
+        <org.osgi.service.http.port>8080</org.osgi.service.http.port>
+        <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+        <jackson.version>2.2.1</jackson.version>
+        <jackson-xml-databind.version>0.5.0</jackson-xml-databind.version>
+        <joda-time.version>2.2</joda-time.version>
+    </properties>
 
-  <modules>
-    <module>poms</module>
-    <module>provision</module>
-    <module>streams-osgi-components</module>
-    <module>streams-eip-routes</module>
-    <module>streams-web</module>
-    <module>streams-pojo</module>
-  </modules>
+    <packaging>pom</packaging>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.ops4j</groupId>
-        <artifactId>maven-pax-plugin</artifactId>
-        <version>1.5</version>
-          <extensions>true</extensions>
-          <configuration>
-            <compilerVersion>1.5</compilerVersion>
-            <provision>
-              <param>--platform=felix</param>
-            </provision>
-        </configuration>
-       <executions>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <modules>
+        <module>poms</module>
+        <module>provision</module>
+        <module>streams-osgi-components</module>
+        <module>streams-eip-routes</module>
+        <module>streams-web</module>
+        <module>streams-pojo</module>
+        <module>streams-contrib</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml</groupId>
+                <artifactId>jackson-xml-databind</artifactId>
+                <version>${jackson-xml-databind.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+                <version>1.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <compilerVersion>1.5</compilerVersion>
+                    <provision>
+                        <param>--platform=felix</param>
+                    </provision>
+                </configuration>
+                <executions>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
