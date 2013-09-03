@@ -11,28 +11,7 @@
                     "type": "string"
                 },
                 "from": {
-                    "type": "object",
-                    "javaType" : "com.instagram.pojo.User",
-                    "properties": {
-                        "bio": {
-                            "type": "string"
-                        },
-                        "full_name": {
-                            "type": "string"
-                        },
-                        "id": {
-                            "type": "string"
-                        },
-                        "profile_picture": {
-                            "type": "string"
-                        },
-                        "username": {
-                            "type": "string"
-                        },
-                        "website": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/properties/user"
                 },
                 "id": {
                     "type": "string"
@@ -58,22 +37,7 @@
                                 "type": "string"
                             },
                             "from": {
-                                "type": "object",
-                                "javaType" : "com.instagram.pojo.User",
-                                "properties": {
-                                    "full_name": {
-                                        "type": "string"
-                                    },
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "profile_picture": {
-                                        "type": "string"
-                                    },
-                                    "username": {
-                                        "type": "string"
-                                    }
-                                }
+                                "$ref": "#/properties/user"
                             },
                             "id": {
                                 "type": "string"
@@ -114,34 +78,10 @@
                     }
                 },
                 "standard_resolution": {
-                    "type": "object",
-                    "javaType" : "com.instagram.pojo.Media",
-                    "properties": {
-                        "height": {
-                            "type": "integer"
-                        },
-                        "url": {
-                            "type": "string"
-                        },
-                        "width": {
-                            "type": "integer"
-                        }
-                    }
+                    "$ref": "#/properties/images/properties/low_resolution"
                 },
                 "thumbnail": {
-                    "type": "object",
-                    "javaType" : "com.instagram.pojo.Media",
-                    "properties": {
-                        "height": {
-                            "type": "integer"
-                        },
-                        "url": {
-                            "type": "string"
-                        },
-                        "width": {
-                            "type": "integer"
-                        }
-                    }
+                    "$ref": "#/properties/images/properties/low_resolution"
                 }
             }
         },
@@ -154,22 +94,7 @@
                 "data": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "javaType" : "com.instagram.pojo.User",
-                        "properties": {
-                            "full_name": {
-                                "type": "string"
-                            },
-                            "id": {
-                                "type": "string"
-                            },
-                            "profile_picture": {
-                                "type": "string"
-                            },
-                            "username": {
-                                "type": "string"
-                            }
-                        }
+                        "$ref": "#/properties/user"
                     }
                 }
             }
@@ -217,19 +142,7 @@
                 "javaType" : "com.instagram.pojo.UserPosition",
                 "properties": {
                     "user": {
-                        "type": "object",
-                        "javaType" : "com.instagram.pojo.User",
-                        "properties": {
-                            "full_name": {
-                                "type": "string"
-                            },
-                            "id": {
-                                "type": "string"
-                            },
-                            "username": {
-                                "type": "string"
-                            }
-                        }
+                        "$ref": "#/properties/user"
                     },
                     "position": {
                         "type": "object",
@@ -250,34 +163,10 @@
             "type": "object",
             "properties": {
                 "low_resolution": {
-                    "type": "object",
-                    "javaType" : "com.instagram.pojo.Media",
-                    "properties": {
-                        "height": {
-                            "type": "integer"
-                        },
-                        "url": {
-                            "type": "string"
-                        },
-                        "width": {
-                            "type": "integer"
-                        }
-                    }
+                    "$ref": "#/properties/images/properties/low_resolution"
                 },
                 "standard_resolution": {
-                    "type": "object",
-                    "javaType" : "com.instagram.pojo.Media",
-                    "properties": {
-                        "height": {
-                            "type": "integer"
-                        },
-                        "url": {
-                            "type": "string"
-                        },
-                        "width": {
-                            "type": "integer"
-                        }
-                    }
+                    "$ref": "#/properties/images/properties/low_resolution"
                 }
             }
         }
