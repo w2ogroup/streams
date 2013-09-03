@@ -19,7 +19,6 @@ public class InstagramSerDeTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Ignore
     @Test
     public void Tests()
     {

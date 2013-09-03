@@ -214,16 +214,34 @@
             "type": "array",
             "items": {
                 "type": "object",
-                "javaType" : "com.instagram.pojo.User",
+                "javaType" : "com.instagram.pojo.UserPosition",
                 "properties": {
-                    "full_name": {
-                        "type": "string"
+                    "user": {
+                        "type": "object",
+                        "javaType" : "com.instagram.pojo.User",
+                        "properties": {
+                            "full_name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "username": {
+                                "type": "string"
+                            }
+                        }
                     },
-                    "id": {
-                        "type": "string"
-                    },
-                    "username": {
-                        "type": "string"
+                    "position": {
+                        "type": "object",
+                        "javaType" : "com.instagram.pojo.Position",
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            }
+                        }
                     }
                 }
             }
