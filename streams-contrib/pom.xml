@@ -25,10 +25,11 @@
     <modules>
         <module>streams-pojo-datasift</module>
         <module>streams-pojo-facebook</module>
+        <module>streams-pojo-gnip</module>
+        <module>streams-pojo-instagram</module>
+        <module>streams-pojo-moreover</module>
         <module>streams-pojo-sysomos</module>
         <module>streams-pojo-twitter</module>
-        <module>streams-pojo-moreover</module>
-        <module>streams-pojo-gnip</module>
     </modules>
 
     <dependencyManagement>
