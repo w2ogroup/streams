@@ -30,6 +30,8 @@
         <module>streams-pojo-moreover</module>
         <module>streams-pojo-sysomos</module>
         <module>streams-pojo-twitter</module>
+        <module>streams-pojo-gplus</module>
+        <module>streams-pojo-reddit</module>
     </modules>
 
     <dependencyManagement>
