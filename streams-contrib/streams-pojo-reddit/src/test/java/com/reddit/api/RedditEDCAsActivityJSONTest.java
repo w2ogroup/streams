@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
 * To change this template use File | Settings | File Templates.
 */
 public class RedditEDCAsActivityJSONTest {
-    private final static Logger LOGGER = LoggerFactory.getLogger(RedditEDCAsActivityTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(RedditEDCAsActivityJSONTest.class);
 
     private ObjectMapper jsonMapper;
     XmlMapper xmlMapper;
@@ -36,7 +36,7 @@ public class RedditEDCAsActivityJSONTest {
     @Test
     public void Tests()   throws Exception
     {
-        InputStream is = RedditEDCAsActivityTest.class.getResourceAsStream("/RedditEDCFixed.json");
+        InputStream is = RedditEDCAsActivityJSONTest.class.getResourceAsStream("/RedditEDCFixed.json");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
