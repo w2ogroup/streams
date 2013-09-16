@@ -36,7 +36,7 @@ public class GPlusEDCAsActivityTest {
     @Test
     public void Tests()   throws Exception
     {
-        InputStream is = GPlusEDCAsActivityTest.class.getResourceAsStream("/GPlusEDC.json");
+        InputStream is = GPlusEDCAsActivityTest.class.getResourceAsStream("/GPlusEDCFixed.json");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);

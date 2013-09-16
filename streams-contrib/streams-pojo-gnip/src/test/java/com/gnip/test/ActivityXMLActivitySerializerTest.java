@@ -39,7 +39,8 @@ public class ActivityXMLActivitySerializerTest {
     @Test
     public void deserializationTest2() throws Exception{
         System.out.println(System.getProperty("user.dir"));
-        Scanner scanner = new Scanner(new File("streams-contrib/streams-pojo-gnip/src/test/resources/YoutubeEDC.xml"));
+//        Scanner scanner = new Scanner(new File("streams-contrib/streams-pojo-gnip/src/test/resources/YoutubeEDC.xml"));
+        Scanner scanner = new Scanner(YouTubeEDCSerDeTest.class.getResourceAsStream("/YoutubeEDC.xml"));
         ActivityXMLActivitySerializer serializer = new ActivityXMLActivitySerializer();
         while(scanner.hasNextLine()) {
             String xml = scanner.nextLine();
