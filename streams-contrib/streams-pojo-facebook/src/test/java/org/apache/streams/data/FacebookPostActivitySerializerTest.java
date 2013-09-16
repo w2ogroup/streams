@@ -19,6 +19,7 @@ package org.apache.streams.data;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -40,15 +41,21 @@ public class FacebookPostActivitySerializerTest {
     Node fields;
     JsonNode json;
     ActivitySerializer serializer = new FacebookPostActivitySerializer();
+    ObjectMapper mapper;
 
     @Before
     public void setup() throws IOException {
         json = getJsonNode();
         fields = discover(json);
+
+        mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
+        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
     }
 
     @Test
-    public void loadData() {
+    public void loadData() throws Exception {
         for (JsonNode item : json) {
             Activity activity = serializer.deserialize(getString(item));
             assertThat(activity, is(not(nullValue())));
@@ -62,6 +69,7 @@ public class FacebookPostActivitySerializerTest {
             assertThat(activity.getObject().getObjectType(), is(not(nullValue())));
             assertThat(activity.getContent(), is(not(nullValue())));
             assertThat(activity.getProvider().getId(), is(equalTo("id:providers:facebook")));
+            System.out.println(activity.getPublished());
         }
     }
 

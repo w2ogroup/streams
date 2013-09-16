@@ -36,7 +36,7 @@ public class GPlusEDCAsActivityTest {
     @Test
     public void Tests()   throws Exception
     {
-        InputStream is = GPlusEDCAsActivityTest.class.getResourceAsStream("/GPlusEDCFixed.json");
+        InputStream is = GPlusEDCAsActivityTest.class.getResourceAsStream("/GPlusEDC.json");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -62,6 +62,7 @@ public class GPlusEDCAsActivityTest {
 
                 try {
                     String activityString = gplusSerializer.serialize(activity);
+                    System.out.println(jsonMapper.writeValueAsString(activity));
                 }catch (Exception e ){
                     LOGGER.error(activity.toString());
                     e.printStackTrace();

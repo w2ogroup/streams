@@ -62,7 +62,7 @@ public class RedditEDCAsActivityJSONTest {
 
                 try {
                     String activityString = redditSerializer.serialize(activity);
-//                    System.out.println(activityString);
+                    System.out.println(jsonMapper.writeValueAsString(activity));
                 }catch (Exception e ){
                     LOGGER.error(activity.toString());
                     e.printStackTrace();

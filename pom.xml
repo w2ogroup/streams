@@ -52,6 +52,7 @@
         <module>streams-web</module>
         <module>streams-pojo</module>
         <module>streams-contrib</module>
+        <module>streams-mappings</module>
     </modules>
 
     <dependencyManagement>
