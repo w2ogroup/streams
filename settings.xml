@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"
+	xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<servers>
+		<server>
+            <id>raveldata</id>
+            <username>reader</username>
+			<password>ravelreader</password>
+		</server>
+	</servers>
+	<profiles>
+		<profile>
+			<id>raveldata</id>
+			<repositories>
+				<repository>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+					<id>raveldata</id>
+					<name>raveldata</name>
+					<url>http://raveldata.artifactoryonline.com/raveldata/all-repos</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+					<id>raveldata</id>
+					<name>raveldata</name>
+					<url>http://raveldata.artifactoryonline.com/raveldata/all-repos</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+</settings>
