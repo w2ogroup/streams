@@ -27,6 +27,19 @@
         <version>0.2-incubating-SNAPSHOT</version>
     </parent>
 
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>parent</id>
+            <name>ravel_parent</name>
+            <url>http://raveldata.artifactoryonline.com/raveldata/libs-snapshots-local</url>
+        </repository>
+    </repositories>
+
     <artifactId>streams-project</artifactId>
     <version>0.1-SNAPSHOT</version>
 
