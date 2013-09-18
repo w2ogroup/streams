@@ -1,6 +1,6 @@
 package com.twitter.test;
 
-import com.twitter.pojo.Tweet;
+import com.twitter.Tweet;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;

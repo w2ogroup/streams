@@ -1,7 +1,7 @@
 {
     "type": "object",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "javaType": "com.moreover.api.Moreover",
+    "javaType": "com.moreover.config.Moreover",
     "id": "#",
     "properties": {
         "tags": {

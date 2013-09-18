@@ -2,7 +2,7 @@
     "type": "object",
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "#",
-    "javaType" : "com.twitter.pojo.Tweet",
+    "javaType" : "com.twitter.Tweet",
     "properties": {
         "text": {
             "type": "string"
@@ -19,11 +19,12 @@
         "entities": {
             "type": "object",
             "dynamic": "true",
-            "javaType" : "com.twitter.api.Entities",
+            "javaType" : "com.twitter.Entities",
             "properties": {
                 "user_mentions": {
                     "type": "object",
                     "dynamic": "true",
+                    "javaType" : "com.twitter.UserMentions",
                     "properties": {
                         "id": {
                             "ignore_malformed": false,
@@ -83,7 +84,7 @@
         "user": {
             "id": "user",
             "type": "object",
-            "javaType" : "com.twitter.api.User",
+            "javaType" : "com.twitter.User",
     		"dynamic": "true",
             "properties": {
                 "location": {

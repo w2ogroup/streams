@@ -54,18 +54,21 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/java/com/sysomos/pojo</directory>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                        </fileset>
-                        <fileset>
                             <directory>target</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
                         </fileset>
                     </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>src/main/java/**/*.java</include>
+                        <include>target/generated-sources/jsonschema2pojo/*.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>
@@ -77,8 +80,8 @@
                     <sourcePaths>
                         <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
                     </sourcePaths>
-                    <outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>com.sysomos.pojo</targetPackage>
+                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
+                    <targetPackage>com.sysomos</targetPackage>
                 </configuration>
                 <executions>
                     <execution>

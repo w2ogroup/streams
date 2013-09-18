@@ -69,6 +69,15 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>src/main/java/**/*.java</include>
+                        <include>target/generated-sources/jsonschema2pojo/*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.googlecode.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>0.3.7</version>
@@ -78,8 +87,8 @@
                     <sourcePaths>
                         <sourcePath>src/main/jsonschema/com/twitter</sourcePath>
                     </sourcePaths>
-                    <outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>com.twitter.pojo</targetPackage>
+                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
+                    <targetPackage>com.twitter</targetPackage>
                 </configuration>
                 <executions>
                     <execution>

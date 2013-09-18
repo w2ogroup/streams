@@ -1,6 +1,6 @@
 package com.datasift.test;
 
-import com.datasift.pojo.Datasift;
+import com.datasift.Datasift;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

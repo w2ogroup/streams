@@ -1,6 +1,6 @@
 package com.sysomos.test;
 
-import com.sysomos.pojo.Sysomos;
+import com.sysomos.Sysomos;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;

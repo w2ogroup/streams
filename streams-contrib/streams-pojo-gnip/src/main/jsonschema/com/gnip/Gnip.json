@@ -114,7 +114,7 @@
             }
         },
         "location": {
-            "javaType": "com.gnip.api.Location",
+            "javaType": "com.gnip.config.Location",
             "properties": {
                 "geo": {
                     "properties": {
@@ -159,7 +159,7 @@
             "type": "string"
         },
         "provider": {
-            "javaType": "com.gnip.api.Provider",
+            "javaType": "com.gnip.config.Provider",
             "properties": {
                 "link": {
                     "type": "string"
@@ -173,7 +173,7 @@
             }
         },
         "actor": {
-            "javaType": "com.gnip.api.Actor",
+            "javaType": "com.gnip.config.Actor",
             "properties": {
                 "twitterTimeZone": {
                     "type": "string"
@@ -248,7 +248,7 @@
                 }
             },
             "object": {
-                "javaType": "com.gnip.api.Object",
+                "javaType": "com.gnip.config.Object",
                 "properties": {
                     "summary": {
                         "type": "string"

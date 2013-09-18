@@ -54,18 +54,21 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/java/com/datasift/pojo</directory>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                        </fileset>
-                        <fileset>
                             <directory>target</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
                         </fileset>
                     </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>src/main/java/**/*.java</include>
+                        <include>target/generated-sources/jsonschema2pojo/*.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>
@@ -78,8 +81,8 @@
                     <sourcePaths>
                         <sourcePath>src/main/jsonschema/com/datasift</sourcePath>
                     </sourcePaths>
-                    <outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>com.datasift.pojo</targetPackage>
+                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
+                    <targetPackage>com.datasift</targetPackage>
                 </configuration>
                 <executions>
                     <execution>
