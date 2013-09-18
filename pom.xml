@@ -33,6 +33,9 @@
     <version>0.1-SNAPSHOT</version>
 
     <name>Apache Streams Project</name>
+
+    <description>Apache Streams Project</description>
+
     <repositories>
         <repository>
             <id>apache.snapshots</id>
@@ -43,8 +46,6 @@
             </releases>
         </repository>
     </repositories>
-
-    <description>Apache Streams Project</description>
 
     <properties>
         <org.osgi.service.http.port>8080</org.osgi.service.http.port>
