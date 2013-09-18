@@ -33,18 +33,16 @@
     <version>0.1-SNAPSHOT</version>
 
     <name>Apache Streams Project</name>
-    <!--
-        <repositories>
-            <repository>
-                <snapshots>
-                    <enabled>true</enabled>
-                    <updatePolicy>always</updatePolicy>
-                </snapshots>
-                <id>parent</id>
-                <name>ravel_parent</name>
-                <url>http://raveldata.artifactoryonline.com/raveldata/libs-snapshots-local</url>
-            </repository>
-        </repositories>-->
+    <repositories>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://repository.apache.org/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
     <description>Apache Streams Project</description>
 
