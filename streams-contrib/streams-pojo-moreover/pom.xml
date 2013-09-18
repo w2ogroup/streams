@@ -10,20 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>streams-pojo-moreover</artifactId>
-
+    <properties>
+        <generated.sources.directory>${project.basedir}/src/main/java/</generated.sources.directory>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
-
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.jsonschema2pojo</groupId>
-            <artifactId>jsonschema2pojo-core</artifactId>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-pojo</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -34,20 +28,7 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
-
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -55,7 +36,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/java/com/moreover/pojo</directory>
+                            <directory>src/main/java/com/moreover/api</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -70,26 +51,60 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
-                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.3.7</version>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.3</version>
                 <configuration>
-                    <addCompileSourceRoot>true</addCompileSourceRoot>
-                    <generateBuilders>true</generateBuilders>
-                    <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
-                    </sourcePaths>
-                    <outputDirectory>src/main/java</outputDirectory>
-                    <targetPackage>com.moreover.pojo</targetPackage>
+                    <schemaDirectory>src/main/xmlschema/com/moreover/</schemaDirectory>
+                    <generateDirectory>${generated.sources.directory}</generateDirectory>
+                    <verbose>true</verbose>
+                    <debug>true</debug>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <forceRegenerate>true</forceRegenerate>
+                    <removeOldOutput>true</removeOldOutput>
+                    <generatePackage>com.moreover.api</generatePackage>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>generate</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            <!-- attach sources -->
+           <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            &lt;!&ndash; we just wanna have the source-files, not the xsd-files! &ndash;&gt;
+                            <excludeResources>true</excludeResources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+            <!-- attach javadoc -->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 </project>
