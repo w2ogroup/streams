@@ -3,6 +3,7 @@ package org.apache.streams.data;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.streams.pojo.Activity;
 import org.json.JSONException;
@@ -24,6 +25,7 @@ import javax.xml.transform.dom.DOMSource;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -72,6 +74,12 @@ public class ActivityXMLActivitySerializer implements ActivitySerializer {
             LOGGER.error("Xml that caused error : {}", serializedXML);
         }
         return activity;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<Activity> deserializeAll(String serializedList) {
+        //TODO Support
+        throw new NotImplementedException("Not currently supported by this deserializer");
     }
 
     private String fixActivityXML(Activity activity, String xml) throws Exception{

@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
+import java.util.List;
 
 /**
  * Deserializes the Moreover Article XML and converts it to an instance of {@link Activity}
@@ -36,6 +37,11 @@ public class MoreoverArticleActivitySerializer implements ActivitySerializer {
         Article article = deserializeMoreover(serialized);
         article.getId();
         return null;
+    }
+
+    @Override
+    public List<Activity> deserializeAll(String serializedList) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private Article deserializeMoreover(String serialized){

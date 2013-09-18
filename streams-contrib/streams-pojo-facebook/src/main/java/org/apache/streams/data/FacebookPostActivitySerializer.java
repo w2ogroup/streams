@@ -20,15 +20,14 @@ package org.apache.streams.data;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.pojo.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 import static org.apache.streams.data.util.ActivityUtil.*;
 import static org.apache.streams.data.util.JsonUtil.*;
@@ -63,6 +62,12 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
         fixObjectId(activity);
         fixContentFromSummary(activity);
         return activity;
+    }
+
+    @Override
+    public List<Activity> deserializeAll(String serializedList) {
+        //TODO Support
+        throw new NotImplementedException("Not currently supported by this deserializer");
     }
 
     private void fixContentFromSummary(Activity activity) {

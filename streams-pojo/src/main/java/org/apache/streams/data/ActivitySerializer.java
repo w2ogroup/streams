@@ -20,6 +20,8 @@ package org.apache.streams.data;
 
 import org.apache.streams.pojo.Activity;
 
+import java.util.List;
+
 /**
  * Serializes and deserializes Activities from a String
  */
@@ -42,11 +44,15 @@ public interface ActivitySerializer {
 
     /**
      * Converts a string into an Activity
-     *
-     *
-     *
      * @param serialized the string representation
      * @return a fully populated Activity object
      */
     Activity deserialize(String serialized);
+
+    /**
+     * Converts a string representing multiple activities into a list of Activity objects
+     * @param serializedList a String representation of a List
+     * @return a list of fully populated activities
+     */
+    List<Activity> deserializeAll(String serializedList);
 }

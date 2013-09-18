@@ -2,12 +2,14 @@ package org.apache.streams.data;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.pojo.Activity;
 import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import java.io.StringReader;
+import java.util.List;
 
 import static org.apache.streams.data.util.ActivityUtil.*;
 import static org.apache.streams.data.util.JsonUtil.*;
@@ -93,5 +95,11 @@ public class PowerTrackActivitySerializer implements ActivitySerializer {
             LOGGER.error("Exception on json : {}", serialized);
         }
         return activity;
+    }
+
+    @Override
+    public List<Activity> deserializeAll(String serializedList) {
+        //TODO Support
+        throw new NotImplementedException("Not currently supported by this deserializer");
     }
 }

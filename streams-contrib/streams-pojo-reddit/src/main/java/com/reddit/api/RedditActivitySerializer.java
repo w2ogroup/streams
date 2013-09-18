@@ -3,6 +3,7 @@ package com.reddit.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gnip.api.GnipActivityFixer;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.data.util.ActivityUtil;
 import org.apache.streams.pojo.Activity;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import static org.apache.streams.data.util.ActivityUtil.getProviderId;
@@ -83,5 +85,11 @@ public class RedditActivitySerializer implements ActivitySerializer{
             e.printStackTrace();
         }
         return activity;
+    }
+
+    @Override
+    public List<Activity> deserializeAll(String serializedList) {
+        //TODO Support
+        throw new NotImplementedException("Not currently supported by this deserializer");
     }
 }

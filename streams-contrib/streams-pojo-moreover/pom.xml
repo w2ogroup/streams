@@ -61,7 +61,7 @@
                     <debug>true</debug>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <forceRegenerate>true</forceRegenerate>
-                    <removeOldOutput>true</removeOldOutput>
+                    <removeOldOutput>false</removeOldOutput>
                     <generatePackage>com.moreover.api</generatePackage>
                 </configuration>
                 <executions>
