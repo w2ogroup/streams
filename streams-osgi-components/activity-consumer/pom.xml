@@ -37,8 +37,9 @@
   <properties>
     <bundle.symbolicName>activity-consumer-bundle</bundle.symbolicName>
     <bundle.namespace>org.apache.streams.osgi.components.activityconsumer</bundle.namespace>
-    <commons.log>1.1</commons.log>
-    <jackson.version>1.9.11</jackson.version>
+    <commons.log>1.1</commons.log><!--
+    <jackson.version>1.9.11</jackson.version>-->
+      <jackson.old.version>1.9.11</jackson.old.version>
   </properties>
 
   <build>
@@ -83,7 +84,8 @@
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Export-Package>${bundle.namespace};version="${project.version}",org.apache.streams.osgi.components.activityconsumer.impl</Export-Package>
                         <Private-Package>${bundle.namespace}.impl.*</Private-Package>
-                        <Import-Package>org.apache.streams.osgi.components.activityconsumer,org.apache.streams.osgi.components.activityconsumer.impl,org.apache.commons.logging,org.codehaus.jackson.*;version="${jackson.version}",javax.xml.datatype, javax.xml.namespace, javax.xml.parsers, org.joda.time, org.joda.time.format, org.w3c.dom, org.w3c.dom.bootstrap, org.w3c.dom.ls, org.xml.sax</Import-Package>
+                        <Import-Package>org.apache.streams.osgi.components.activityconsumer,org.apache.streams.osgi.components.activityconsumer.impl,org.apache.commons.logging,org.codehaus.jackson.*;version="${jackson.version}",javax.xml.datatype, javax.xml.namespace, javax.xml.parsers, org.joda.time, org.joda.time.format, org.w3c.dom, org.w3c.dom.bootstrap, org.w3c.dom.ls, org.xml.sax, org.apache.rave.model, org.apache.rave.portal.model.impl, org.apache.streams.cassandra.model
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -102,13 +104,13 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mrbean</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson.old.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson.old.version}</version>
         </dependency>
 
         <dependency>
@@ -123,6 +125,24 @@
             <artifactId>commons-logging-api</artifactId>
             <version>${commons.log}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rave</groupId>
+            <artifactId>rave-core</artifactId>
+            <version>${rave.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rave</groupId>
+            <artifactId>rave-core-api</artifactId>
+            <version>${rave.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-cassandra</artifactId>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

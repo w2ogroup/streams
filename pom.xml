@@ -17,7 +17,8 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -27,23 +28,23 @@
         <version>0.2-incubating-SNAPSHOT</version>
     </parent>
 
-
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-            <id>parent</id>
-            <name>ravel_parent</name>
-            <url>http://raveldata.artifactoryonline.com/raveldata/libs-snapshots-local</url>
-        </repository>
-    </repositories>
-
+    <groupId>org.apache.streams</groupId>
     <artifactId>streams-project</artifactId>
     <version>0.1-SNAPSHOT</version>
 
     <name>Apache Streams Project</name>
+    <!--
+        <repositories>
+            <repository>
+                <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>always</updatePolicy>
+                </snapshots>
+                <id>parent</id>
+                <name>ravel_parent</name>
+                <url>http://raveldata.artifactoryonline.com/raveldata/libs-snapshots-local</url>
+            </repository>
+        </repositories>-->
 
     <description>Apache Streams Project</description>
 
@@ -53,15 +54,37 @@
         <jackson.version>2.2.1</jackson.version>
         <jackson-xml-databind.version>0.5.0</jackson-xml-databind.version>
         <joda-time.version>2.2</joda-time.version>
+        <rave.version>0.22</rave.version>
+        <datastax.version>1.0.3</datastax.version>
     </properties>
 
     <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+                <version>1.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <compilerVersion>1.5</compilerVersion>
+                    <provision>
+                        <param>--platform=felix</param>
+                    </provision>
+                </configuration>
+                <executions>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <modules>
         <module>poms</module>
         <module>provision</module>
         <module>streams-osgi-components</module>
         <module>streams-eip-routes</module>
+        <module>streams-cassandra</module>
         <module>streams-web</module>
         <module>streams-pojo</module>
         <module>streams-contrib</module>
@@ -92,24 +115,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.ops4j</groupId>
-                <artifactId>maven-pax-plugin</artifactId>
-                <version>1.5</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <compilerVersion>1.5</compilerVersion>
-                    <provision>
-                        <param>--platform=felix</param>
-                    </provision>
-                </configuration>
-                <executions>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
