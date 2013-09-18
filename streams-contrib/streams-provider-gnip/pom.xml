@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-pojo-sysomos</artifactId>
+    <artifactId>streams-provider-gnip</artifactId>
     <dependencies>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -32,8 +31,22 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-pojo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
-
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
@@ -54,18 +67,27 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
                         <goals>
-                            <goal>add-source</goal>
+                            <goal>add-resource</goal>
                         </goals>
                         <configuration>
-                            <sources>
-                                <source>target/generated-sources/jsonschema2pojo</source>
-                            </sources>
+                            <resources>
+                                <resource>
+                                    <directory>src/my-resources</directory>
+                                    <targetPath>my-resources</targetPath>
+                                    <excludes>
+                                        <exclude>**/junk/**</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>com.googlecode.jsonschema2pojo</groupId>
@@ -74,10 +96,10 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/gnip</sourcePath>
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
-                    <targetPackage>com.sysomos</targetPackage>
+                    <targetPackage>com.gnip</targetPackage>
                 </configuration>
                 <executions>
                     <execution>
@@ -88,6 +110,5 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 </project>

@@ -7,8 +7,8 @@
         <groupId>org.apache.streams</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
+
     <artifactId>streams-contrib</artifactId>
 
     <packaging>pom</packaging>
@@ -23,13 +23,13 @@
     </properties>
 
     <modules>
-        <module>streams-pojo-datasift</module>
+        <module>streams-provider-datasift</module>
         <module>streams-pojo-facebook</module>
-        <module>streams-pojo-gnip</module>
+        <module>streams-provider-gnip</module>
         <module>streams-pojo-instagram</module>
-        <module>streams-pojo-moreover</module>
+        <module>streams-provider-moreover</module>
         <module>streams-pojo-sysomos</module>
-        <module>streams-pojo-twitter</module>
+        <module>streams-provider-twitter</module>
         <module>streams-pojo-gplus</module>
         <module>streams-pojo-reddit</module>
     </modules>

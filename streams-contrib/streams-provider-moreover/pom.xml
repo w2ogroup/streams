@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-pojo-sysomos</artifactId>
+    <artifactId>streams-provider-moreover</artifactId>
+
     <dependencies>
 
         <dependency>
@@ -29,8 +30,16 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-pojo</artifactId>
         </dependency>
     </dependencies>
 
@@ -54,7 +63,7 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
+                        <id>add-source-jsonschema2pojo</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
@@ -65,19 +74,54 @@
                             </sources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>add-source-jaxb2</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/jaxb2</source>
+                            </sources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>com.googlecode.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.3.7</version>
                 <configuration>
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/sysomos</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/moreover</sourcePath>
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
-                    <targetPackage>com.sysomos</targetPackage>
+                    <targetPackage>com.moreover</targetPackage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.3</version>
+                <configuration>
+                    <schemaDirectory>src/main/xmlschema/com/moreover/</schemaDirectory>
+                    <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
+                    <verbose>true</verbose>
+                    <debug>true</debug>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <forceRegenerate>true</forceRegenerate>
+                    <removeOldOutput>false</removeOldOutput>
+                    <generatePackage>com.moreover.api</generatePackage>
                 </configuration>
                 <executions>
                     <execution>
@@ -88,6 +132,5 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 </project>
