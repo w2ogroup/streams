@@ -11,11 +11,33 @@ import java.util.Map;
 public class ActivityUtil {
     private ActivityUtil() {}
 
+    /**
+     * Property on the activity object to use for extensions
+     */
     public static final String EXTENSION_PROPERTY = "extensions";
+    /**
+     * The number of +1, Like, favorites, etc that the post has received
+     */
     public static final String LIKES_EXTENSION = "likes";
+    /**
+     * The number of retweets, shares, etc that the post has received
+     */
     public static final String REBROADCAST_EXTENSION = "rebroadcasts";
+    /**
+     * The language of the post
+     */
+    public static final String LANGUAGE_EXTENSION = "language";
+    /**
+     * Location that the post was made or the actor's residence
+     */
     public static final String LOCATION_EXTENSION = "location";
+    /**
+     * Country that the post was made
+     */
     public static final String LOCATION_EXTENSION_COUNTRY = "country";
+    /**
+     * Specific JSON-geo coordinates (long,lat)
+     */
     public static final String LOCATION_EXTENSION_COORDINATES = "coordinates";
 
     /**

@@ -35,6 +35,7 @@ public class MoreoverUtils {
         activity.setVerb("posted");
         fixActivityId(activity);
         addLocationExtension(activity, source);
+        addLanguageExtension(activity, article);
         activity.setLinks(convertLinks(article));
         return activity;
     }
@@ -104,6 +105,14 @@ public class MoreoverUtils {
             Map<String, Object> location = new HashMap<String, Object>();
             location.put(LOCATION_EXTENSION_COUNTRY, country);
             extensions.put(LOCATION_EXTENSION, location);
+        }
+    }
+
+    public static void addLanguageExtension(Activity activity, Article value) {
+        Map<String, Object> extensions = ensureExtensions(activity);
+        String language = value.getLanguage();
+        if (language != null) {
+            extensions.put(LANGUAGE_EXTENSION, language);
         }
     }
 
