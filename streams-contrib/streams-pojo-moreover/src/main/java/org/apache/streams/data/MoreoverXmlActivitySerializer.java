@@ -2,11 +2,13 @@ package org.apache.streams.data;
 
 import com.moreover.api.Article;
 import com.moreover.api.ArticlesResponse;
+import com.moreover.api.ObjectFactory;
 import org.apache.commons.lang.SerializationException;
 import org.apache.streams.data.util.MoreoverUtils;
 import org.apache.streams.pojo.Activity;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
@@ -59,23 +61,23 @@ public class MoreoverXmlActivitySerializer implements ActivitySerializer {
             Unmarshaller unmarshaller = articleContext.createUnmarshaller();
             return (Article) unmarshaller.unmarshal(new StringReader(serialized));
         } catch (JAXBException e) {
-            throw new SerializationException("Unable to deserialize Moreover data");
+            throw new SerializationException("Unable to deserialize Moreover data", e);
         }
     }
 
     private ArticlesResponse deserializeMoreoverResponse(String serialized){
         try {
-            Unmarshaller unmarshaller = articleContext.createUnmarshaller();
-            return (ArticlesResponse) unmarshaller.unmarshal(new StringReader(serialized));
+            Unmarshaller unmarshaller = articlesContext.createUnmarshaller();
+            return ((JAXBElement<ArticlesResponse>) unmarshaller.unmarshal(new StringReader(serialized))).getValue();
         } catch (JAXBException e) {
-            throw new SerializationException("Unable to deserialize Moreover data");
+            throw new SerializationException("Unable to deserialize Moreover data", e);
         }
     }
 
     private JAXBContext createContext(Class articleClass) {
         JAXBContext context;
         try {
-            context = JAXBContext.newInstance(articleClass);
+            context = JAXBContext.newInstance(articleClass.getPackage().getName(), ObjectFactory.class.getClassLoader());
         } catch (JAXBException e) {
             throw new IllegalStateException("Unable to create JAXB Context for Moreover data", e);
         }

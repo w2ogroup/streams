@@ -32,23 +32,22 @@ public class MoreoverXmlActivitySerializerTest {
         for (Activity activity : activities) {
             assertThat(activity, is(not(nullValue())));
             assertThat(activity.getActor(), is(not(nullValue())));
-            assertThat(matches("id:facebook:people:[a-zA-Z0-9]*", activity.getActor().getId()), is(true));
             assertThat(activity.getActor().getDisplayName(), is(not(nullValue())));
             assertThat(activity.getObject(), is(not(nullValue())));
             if(activity.getObject().getId() != null) {
-                assertThat(matches("id:facebook:[a-z]*s:[a-zA-Z0-9]*", activity.getObject().getId()), is(true));
+                assertThat(matches("id:.*:[a-z]*s:[a-zA-Z0-9]*", activity.getObject().getId()), is(true));
             }
             assertThat(activity.getObject().getObjectType(), is(not(nullValue())));
             assertThat(activity.getContent(), is(not(nullValue())));
-            assertThat(activity.getProvider().getId(), is(equalTo("id:providers:facebook")));
+            assertThat(matches("id:providers:[a-zA-Z0-9]*", activity.getProvider().getId()), is(true));
             System.out.println(activity.getPublished());
         }
     }
 
     private String loadXml() throws IOException {
         StringWriter writer = new StringWriter();
-        InputStream resourceAsStream = this.getClass().getResourceAsStream("org/apache/streams/data/moreover.xml");
-        IOUtils.copy(resourceAsStream, writer, Charset.forName("UTF-16"));
+        InputStream resourceAsStream = this.getClass().getResourceAsStream("/org/apache/streams/data/moreover.xml");
+        IOUtils.copy(resourceAsStream, writer, Charset.forName("UTF-8"));
         return writer.toString();
     }
 

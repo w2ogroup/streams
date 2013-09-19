@@ -19,7 +19,7 @@ import static org.apache.streams.data.util.ActivityUtil.*;
 public class MoreoverUtils {
     private MoreoverUtils() { }
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
+    public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
     public static Activity convert(Article article) {
         Activity activity = new Activity();
@@ -30,10 +30,18 @@ public class MoreoverUtils {
         activity.setObject(convertObject(article));
         activity.setPublished(parse(article.getPublishedDate()));
         activity.setContent(article.getContent());
+        activity.setTitle(article.getTitle());
         activity.setVerb("posted");
+        fixActivityId(activity);
         addLocationExtension(activity, source);
         activity.setLinks(convertLinks(article));
         return activity;
+    }
+
+    private static void fixActivityId(Activity activity) {
+        if(activity.getId().matches("\\{[a-z]*\\}")) {
+            activity.setId(null);
+        }
     }
 
     private static List convertLinks(Article article) {
@@ -77,7 +85,7 @@ public class MoreoverUtils {
         Actor actor = new Actor();
         AuthorPublishingPlatform platform = author.getPublishingPlatform();
         String userId = platform.getUserId();
-        if(userId != null) actor.setId(getPersonId(platformName, userId));
+        if(userId != null) actor.setId(getPersonId(getProviderID(platformName), userId));
         actor.setDisplayName(author.getName());
         actor.setUrl(author.getHomeUrl());
         actor.setSummary(author.getDescription());
@@ -104,6 +112,10 @@ public class MoreoverUtils {
     }
 
     private static String getProviderID(Feed feed) {
-        return feed.getPublishingPlatform() == null ? feed.getMediaType() : feed.getPublishingPlatform();
+        return getProviderID(feed.getPublishingPlatform() == null ? feed.getMediaType() : feed.getPublishingPlatform());
+    }
+
+    private static String getProviderID(String feed) {
+        return feed.toLowerCase().replace(" ", "_").trim();
     }
 }
