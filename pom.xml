@@ -55,6 +55,11 @@
         <joda-time.version>2.2</joda-time.version>
         <rave.version>0.22</rave.version>
         <datastax.version>1.0.3</datastax.version>
+        <jsonschema2pojo.version>0.3.7</jsonschema2pojo.version>
+        <junit.version>4.11</junit.version>
+        <slf4j.version>1.6.1</slf4j.version>
+        <logback.version>1.0.9</logback.version>
+        <commons-io.version>2.4</commons-io.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -85,8 +90,8 @@
         <module>streams-eip-routes</module>
         <module>streams-cassandra</module>
         <module>streams-web</module>
-        <module>streams-pojo</module>
         <module>streams-config</module>
+        <module>streams-pojo</module>
         <module>streams-contrib</module>
     </modules>
 

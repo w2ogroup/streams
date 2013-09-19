@@ -70,12 +70,6 @@
             <version>0.1-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.streams</groupId>
-            <artifactId>streams-provider-gnip</artifactId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -97,12 +91,6 @@
                 <version>2.5</version>
                 <configuration>
                     <filesets>
-                        <fileset>
-                            <directory>src/main/java/com/gplus/pojo</directory>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                        </fileset>
                         <fileset>
                             <directory>target</directory>
                             <includes>

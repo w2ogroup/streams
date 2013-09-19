@@ -1,0 +1,120 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "javaType": "com.semantria.Document",
+    "id": "#",
+    "properties": {
+        "source_text": {
+            "type": "string"
+        },
+        "summary": {
+            "type": "string"
+        },
+        "language": {
+            "type": "string"
+        },
+        "sentiment_score": {
+            "type": "double"
+        },
+        "sentiment_polarity": {
+            "type": "string"
+        }
+    }
+}
+
+
+
+/*
+
+
+ document
+ source_text Original source text passed by client for this document.
+ summary A summary of the document text.
+ language Determined language of source text.
+ sentiment_score A sentiment analysis of the document text.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+ details Returns sentences from the original document with POS tags within.
+ is_imperative Represents whether sentence (group of words) is imperative or not.
+ is_polar Represents whether or not sentence content contains sentiment polarity.
+ words Returns list of words grouped by the parent sentence.
+ tag POS marker of the word.
+ type Verbal representation of part of speech in addition to certain tag.
+ title The original word representation in text.
+ stemmed The stemmed form of the word.
+ sentiment_score The sentiment score associated with the word.
+ phrases Returns sentiment-bearing phrases of the document.
+ title The text of the sentiment-bearing phrase.
+ sentiment_score The sentiment score associated with this phrase.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+ is_negated Specifies whether the phrase has been negated or not.
+ negating_phrase If the phrase has been negated, this gives the negating phrase.
+ type Type of phrase; can be either “possible” or “detected” value.
+ themes Returns themes of the document.
+ title The text of the document theme.
+ is_about An indicator specifying whether theme is the main theme of the document.
+ evidence A measure of the content on which the sentiment score for the theme is based.Semantria API 3.0.2
+ Semantria API 3.0.2 Page 61 of 63
+ strength_score A measure of the strength of the theme within the document.
+ sentiment_score The sentiment score for the document theme.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+ mentions Returns genuine forms of theme mentioned across the documents.
+ label The text of the attribute mention.
+ is_negated Indicates whether or not the mention has been negated.
+ negating_phrase If the mention has been negated, this gives the negating phrase.
+ locations List of coordinates within the document where the mention appeared.
+ offset The byte offset in the original text that the mention starts at.
+ length The length of the mention in bytes.
+ entities Returns the named entities and user defined entities from the text.
+ title Normalized entity title based on existing entity normalization rules.
+ type Type of the entity; can be either “named” or “user” value.
+ is_about Specifies whether the document is about this entity.
+ evidence A measure of how much evidence the sentiment score was based on.
+ confident An indicator specifying whether or not the confidence queries matched for this entity.
+ entity_type Type of the entity (Company, Person, Place, Product, etc.).
+ label Descriptive label for the entity, if applicable.
+ sentiment_score Sentiment related to the entity.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+ mentions Returns genuine forms of entity mentioned across the documents.
+ label The text of the attribute mention.
+ is_negated Indicates whether or not the mention has been negated.
+ negating_phrase If the mention has been negated, this gives the negating phrase.
+ locations List of coordinates within the document where the mention appeared.
+ offset The byte offset in the original text that the mention starts at.
+ length The length of the mention in bytes.
+ themes Returns list of themes related to this entity.
+ title The text of the entity theme.
+ is_about An indicator specifying if the theme is contained within the summary of the document.
+ evidence A measure of the content on which the sentiment score for the theme is based.
+ strength_score A measure of the strength of the theme within the document.
+ sentiment_score The sentiment score for the entity theme.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+ mentions Returns genuine forms of entity mentioned across the documents.
+ label The text of the attribute mention.
+ is_negated Indicates whether or not the mention has been negated.
+ negating_phrase If the mention has been negated, this gives the negating phrase.
+ locations List of coordinates within the document where the mention appeared.
+ offset The byte offset in the original text that the mention starts at.
+ length The length of the mention in bytes.
+ relations Returns relations which represent a connection between one or more Entity objects.
+ type Type of relation according to extracted entities. Can be either named or user value.
+ relation_type A label describing the nature of the relationship.
+ confidence_score A measure of confidence in the relationship extraction.
+ extra Extra information that has been extracted about the relationship.
+ entities Returns entities which presents parent relationship.
+ title Normalized entity title based on existing entity normalization rules.
+ entity_type Type of the entity (Company, Person, Place, Product, etc.).
+ opinions Returns the list of opinions extracted from the source text.
+ quotation The text of the expressed opinion.
+ type Type of opinion according to extracted entity. Can be either named or user value.
+ speaker An entity title that is an author of the expressing the opinion.
+ topic An entity title that is the subject of the opinion, if applicable.
+ sentiment_score The sentiment score associated with the opinion.
+ Topics Returns the concept and query defined topics determined for the text.Semantria API 3.0.2
+ Semantria API 3.0.2 Page 62 of 63
+ title The topic title, which is its label in the text.
+ type Type of the topic; can be either “concept” or “query” value.
+ hitcount Number of query terms that are hit within the document based on query topic.
+ strength_score Strength of the concept topic matches with the document content.
+ sentiment_score The sentiment score for document content associated with the query topic.
+ sentiment_polarity Verbal representation of sentiment score. Can be “negative”, “positive” or “neutral”.
+    */

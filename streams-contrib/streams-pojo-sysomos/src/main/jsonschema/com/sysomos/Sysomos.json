@@ -8,14 +8,11 @@
             "type": "string"
         },
         "location": {
-            "dynamic": "true",
             "properties": {
                 "locationString": {
-                    "index": "not_analyzed",
                     "type": "string"
                 },
                 "country": {
-                    "index": "not_analyzed",
                     "type": "string"
                 }
             }

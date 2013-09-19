@@ -14,24 +14,20 @@
     <packaging>pom</packaging>
 
     <properties>
-        <jsonschema2pojo.version>0.3.7</jsonschema2pojo.version>
-        <junit.version>4.11</junit.version>
-        <slf4j.version>1.6.1</slf4j.version>
-        <logback.version>1.0.9</logback.version>
-        <commons-io.version>2.4</commons-io.version>
-        <jackson.version>2.2.1</jackson.version>
+
     </properties>
 
     <modules>
         <module>streams-provider-datasift</module>
         <module>streams-pojo-facebook</module>
-        <module>streams-provider-gnip</module>
+        <module>streams-pojo-gnip</module>
         <module>streams-pojo-instagram</module>
         <module>streams-provider-moreover</module>
         <module>streams-pojo-sysomos</module>
         <module>streams-provider-twitter</module>
         <module>streams-pojo-gplus</module>
         <module>streams-pojo-reddit</module>
+        <module>streams-proxy-semantria</module>
     </modules>
 
     <dependencyManagement>

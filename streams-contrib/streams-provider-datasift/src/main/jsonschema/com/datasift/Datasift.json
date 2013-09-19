@@ -1200,31 +1200,6 @@
                     "type": "string"
                 }
             }
-        },
-        "w2o": {
-            "type": "object",
-            "dynamic": "true",
-            "properties": {
-                "dateTime": {
-                    "dynamic": "true",
-                    "type": "string"
-                },
-                "tags": {
-                    "dynamic": "true",
-                    "type": "object",
-                    "properties": {
-                        "brand": {
-                            "dynamic": "true",
-                            "type": "array",
-                            "items": [
-                                {
-                                    "type": "string"
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
         }
     }
 }
