@@ -17,7 +17,8 @@ import static org.apache.streams.data.util.ActivityUtil.*;
  * Provides utilities for Moroever data
  */
 public class MoreoverUtils {
-    private MoreoverUtils() { }
+    private MoreoverUtils() {
+    }
 
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
@@ -39,15 +40,18 @@ public class MoreoverUtils {
     }
 
     private static void fixActivityId(Activity activity) {
-        if(activity.getId().matches("\\{[a-z]*\\}")) {
+        if (activity.getId().matches("\\{[a-z]*\\}")) {
             activity.setId(null);
         }
     }
 
     private static List convertLinks(Article article) {
         List list = new LinkedList();
-        for(String url : article.getOutboundUrls().getOutboundUrl()) {
-            list.add(url);
+        Article.OutboundUrls outboundUrls = article.getOutboundUrls();
+        if (outboundUrls != null) {
+            for (String url : outboundUrls.getOutboundUrl()) {
+                list.add(url);
+            }
         }
         return list;
     }
@@ -66,7 +70,7 @@ public class MoreoverUtils {
         object.setUrl(article.getOriginalUrl());
         object.setObjectType(article.getDataFormat());
         String type = article.getDataFormat().equals("text") ? "article" : article.getDataFormat();
-        object.setId(getObjectId(getProviderID(article.getSource().getFeed()),type, article.getId()));
+        object.setId(getObjectId(getProviderID(article.getSource().getFeed()), type, article.getId()));
         object.setPublished(parse(article.getPublishedDate()));
         return object;
     }
@@ -85,17 +89,18 @@ public class MoreoverUtils {
         Actor actor = new Actor();
         AuthorPublishingPlatform platform = author.getPublishingPlatform();
         String userId = platform.getUserId();
-        if(userId != null) actor.setId(getPersonId(getProviderID(platformName), userId));
+        if (userId != null) actor.setId(getPersonId(getProviderID(platformName), userId));
         actor.setDisplayName(author.getName());
         actor.setUrl(author.getHomeUrl());
         actor.setSummary(author.getDescription());
         actor.setAdditionalProperties("email", author.getEmail());
         return actor;
     }
+
     public static void addLocationExtension(Activity activity, Source value) {
         Map<String, Object> extensions = ensureExtensions(activity);
         String country = value.getLocation().getCountryCode() == null ? value.getLocation().getCountry() : value.getLocation().getCountryCode();
-        if(country != null) {
+        if (country != null) {
             Map<String, Object> location = new HashMap<String, Object>();
             location.put(LOCATION_EXTENSION_COUNTRY, country);
             extensions.put(LOCATION_EXTENSION, location);
