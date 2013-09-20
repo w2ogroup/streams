@@ -21,8 +21,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-import backtype.storm.Config;
-
 /**
  * Created with IntelliJ IDEA.
  * User: sblackmon
@@ -134,8 +132,6 @@ public class TopologyReflectionLauncher {
         } catch(URISyntaxException e) {
             pipelineFile = new File(pipelineFileUrl.getPath());
         }
-
-        Config stormConfig = new Config();
 
         topologies = loadTopologiesFromPipelineTopologyListFile(pipelineFile);
 

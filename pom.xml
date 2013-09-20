@@ -68,6 +68,20 @@
         <storm.version>0.8.1</storm.version>
     </properties>
 
+    <modules>
+        <module>poms</module>
+        <module>provision</module>
+        <module>streams-osgi-components</module>
+        <module>streams-eip-routes</module>
+        <module>streams-cassandra</module>
+        <module>streams-web</module>
+        <module>streams-config</module>
+        <module>streams-pojo</module>
+        <module>streams-contrib</module>
+        <module>streams-util</module>
+        <module>streams-storm</module>
+    </modules>
+
     <packaging>pom</packaging>
 
     <build>
@@ -106,19 +120,21 @@
         </pluginManagement>
     </build>
 
-    <modules>
-        <module>poms</module>
-        <module>provision</module>
-        <module>streams-osgi-components</module>
-        <module>streams-eip-routes</module>
-        <module>streams-cassandra</module>
-        <module>streams-web</module>
-        <module>streams-config</module>
-        <module>streams-pojo</module>
-        <module>streams-contrib</module>
-        <module>streams-util</module>
-        <module>streams-storm</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
