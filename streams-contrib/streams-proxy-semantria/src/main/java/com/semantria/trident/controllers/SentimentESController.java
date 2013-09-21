@@ -1,6 +1,6 @@
-package com.w2olabs.dashboardlite.controllers;
+package com.semantria.trident.controllers;
 
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchController;
+import com.semantria.trident.trident.state.ElasticSearch.ElasticSearchController;
 import org.elasticsearch.client.transport.TransportClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class SentimentESController implements ElasticSearchController {
 
-    private Logger logger = LoggerFactory.getLogger(SysomosESController.class);
+    private Logger logger = LoggerFactory.getLogger(SentimentESController.class);
     private String clientName;
 
     public SentimentESController(String clientName) {

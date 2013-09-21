@@ -1,4 +1,4 @@
-package com.w2olabs.stormutil.sentiment;
+package com.semantria.trident.util;
 
 import com.semantria.mapping.Document;
 import org.json.JSONObject;

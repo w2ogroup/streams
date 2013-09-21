@@ -1,4 +1,4 @@
-package com.w2olabs.stormutil.trident.function;
+package com.semantria.trident.function;
 
 import backtype.storm.tuple.Values;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -10,7 +10,7 @@ import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
 import storm.trident.tuple.TridentTuple;
 
-import com.w2olabs.stormutil.sentiment.SemantriaToJSON;
+import com.semantria.trident.util.SemantriaToJSON;
 
 import java.util.Map;
 

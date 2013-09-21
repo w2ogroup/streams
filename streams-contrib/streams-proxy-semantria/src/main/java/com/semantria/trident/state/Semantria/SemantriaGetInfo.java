@@ -1,4 +1,4 @@
-package com.w2olabs.stormutil.trident.state.Semantria;
+package com.semantria.trident.state.Semantria;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

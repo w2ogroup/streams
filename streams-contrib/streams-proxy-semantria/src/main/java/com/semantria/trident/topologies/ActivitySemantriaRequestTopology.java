@@ -1,31 +1,34 @@
-package com.w2olabs.dashboardlite.topologies;
+package com.semantria.trident.topologies;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
-import com.w2olabs.dashboardlite.controllers.GnipActivityESController;
-import com.w2olabs.stormutil.trident.function.data.activitystreams.RawDataToActivityStream;
-import com.w2olabs.stormutil.trident.spout.gnip.GnipDataExtractor;
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchBulkUpdateSentiment;
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchIndex;
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchState;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaBatchAnalyze;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaConfiguration;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaGetInfo;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaState;
-import com.w2olabs.stormutil.trident.state.kafka.KafkaConfiguration;
-import com.w2olabs.stormutil.utils.TopologyConfiguration;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.semantria.SemantriaConfiguration;
+import com.semantria.trident.function.data.activitystreams.RawDataToActivityStream;
+import com.semantria.trident.spout.gnip.GnipDataExtractor;
+import com.semantria.trident.state.ElasticSearch.ElasticSearchBulkUpdateSentiment;
+import com.semantria.trident.state.ElasticSearch.ElasticSearchIndex;
+import com.semantria.trident.state.ElasticSearch.ElasticSearchState;
+import com.semantria.trident.state.Semantria.SemantriaBatchAnalyze;
+import com.semantria.trident.state.Semantria.SemantriaState;
+import com.semantria.trident.state.kafka.KafkaConfiguration;
 import org.apache.streams.StreamsConfiguration;
 import org.apache.streams.storm.StreamsTopology;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import storm.kafka.KafkaConfig;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
-import storm.kafka.trident.TridentKafkaConfig;
+import storm.kafka.tridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
+import storm.tridentTopology;
+
+import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,25 +37,80 @@ import storm.trident.TridentTopology;
  * Time: 3:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class KafkaGnipToSemantriaTopology extends StreamsTopology {
+public class ActivitySemantriaRequestTopology extends StreamsTopology implements Runnable {
 
-    public KafkaGnipToSemantriaTopology(String pipelineIdentifier, StreamsConfiguration configuration) {
+    private Logger log = LoggerFactory.getLogger(ActivitySemantriaRequestTopology.class);
+
+    private SemantriaConfiguration semantriaConfiguration;
+
+    public ActivitySemantriaRequestTopology(String pipelineIdentifier, StreamsConfiguration configuration) {
         super(pipelineIdentifier,configuration);
         this.pipelineIdentifier = pipelineIdentifier;
         this.configuration = configuration;
     }
 
-    public static void main(String[] args) throws Exception{
-        Logger log = LoggerFactory.getLogger(KafkaGnipToSemantriaTopology.class);
+    public static SemantriaConfiguration provideConfiguration(StreamsConfiguration streamsConfiguration) {
 
-        TopologyConfiguration w2oConfig = new TopologyConfiguration("/Users/mdelaet/labs-dashboard-java/com.w2olabs.streams/streams-api/src/main/resources/pandg.properties");
-        TridentTopology sentimenttopology = new TridentTopology();
+        ObjectMapper mapper = new ObjectMapper();
+
+        SemantriaConfiguration semantriaConfiguration;
+
+        JsonNode config;
+        try {
+            config = mapper.readValue(mapper.writeValueAsString(streamsConfiguration), JsonNode.class);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return null;
+        }
+
+        try {
+            semantriaConfiguration = mapper.readValue(mapper.writeValueAsString(config.get("semantria")), SemantriaConfiguration.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return null;
+        }
+
+        return semantriaConfiguration;
+
+    }
+
+//    public static void main(String[] args) throws Exception{
+//
+//        ActivitySemantriaRequestTopology topology
+//
+//    }
+
+    private static String[] getKafkaTopics(TopologyConfiguration conf) {
+        String[] ptStreams = conf.getStringArray("gnip.pt.streams");
+        String[] edcStreams = conf.getStringArray("gnip.edc.streams");
+        String[] result = new String[ptStreams.length+edcStreams.length];
+        int index = 0;
+        for(String s : ptStreams) {
+            String[] split = s.split(":");
+            result[index++] = conf.get("kafka.gnip.topic")+"_"+split[1].substring(0, split[1].indexOf('}'))+":"+split[1].substring(0, split[1].indexOf('}'));
+            System.out.println(result[index - 1]);
+        }
+        for(String s : edcStreams) {
+            String[] split = s.split(":");
+            result[index++] = conf.get("kafka.gnip.topic")+"_"+split[1].substring(0, split[1].indexOf('}'))+":"+split[1].substring(0, split[1].indexOf('}'));
+            System.out.println(result[index - 1]);
+        }
+        return result;
+    }
+
+    @Override
+    public void run() {
+
+        TridentTopology topology = new TridentTopology();
         Config stormConfig = new Config();
-        KafkaConfiguration w2oKafka = w2oConfig.getKafkaConfiguration();
 
-        SemantriaConfiguration sConfig = w2oConfig.getSemantriaConfiguration();
-        sConfig.setDocField("gnip_json");
-        sConfig.setIdField("id");
+        semantriaConfiguration = provideConfiguration((StreamsConfiguration) this.configuration);
+
+        semantriaConfiguration.setDocField("gnip_json");
+        semantriaConfiguration.setIdField("id");
 
         String[] kafkaTopics = getKafkaTopics(w2oConfig);
         log.debug("The kafka Topics are: " + kafkaTopics);
@@ -97,6 +155,9 @@ public class KafkaGnipToSemantriaTopology extends StreamsTopology {
             }
         }
 
+
+
+
         log.debug("Kafka host : " + w2oKafka.getBrokerList());
 
         Stream merged = sentimenttopology.merge(new Fields("gnip_json", "provider"), allStreams);
@@ -122,24 +183,5 @@ public class KafkaGnipToSemantriaTopology extends StreamsTopology {
             cluster.killTopology("KafkaGnipToSemantria");
             cluster.shutdown();
         }
-
-    }
-
-    private static String[] getKafkaTopics(TopologyConfiguration conf) {
-        String[] ptStreams = conf.getStringArray("gnip.pt.streams");
-        String[] edcStreams = conf.getStringArray("gnip.edc.streams");
-        String[] result = new String[ptStreams.length+edcStreams.length];
-        int index = 0;
-        for(String s : ptStreams) {
-            String[] split = s.split(":");
-            result[index++] = conf.get("kafka.gnip.topic")+"_"+split[1].substring(0, split[1].indexOf('}'))+":"+split[1].substring(0, split[1].indexOf('}'));
-            System.out.println(result[index - 1]);
-        }
-        for(String s : edcStreams) {
-            String[] split = s.split(":");
-            result[index++] = conf.get("kafka.gnip.topic")+"_"+split[1].substring(0, split[1].indexOf('}'))+":"+split[1].substring(0, split[1].indexOf('}'));
-            System.out.println(result[index - 1]);
-        }
-        return result;
     }
 }

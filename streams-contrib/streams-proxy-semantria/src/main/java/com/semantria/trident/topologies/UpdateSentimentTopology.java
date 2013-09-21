@@ -1,16 +1,15 @@
-package com.w2olabs.dashboardlite.topologies;
+package com.semantria.trident.topologies;
 
 import backtype.storm.Config;
 import backtype.storm.tuple.Fields;
 import com.w2olabs.dashboardlite.controllers.GnipActivityESController;
-import com.w2olabs.stormutil.trident.function.data.activitystreams.RawDataToActivityStream;
-import com.w2olabs.stormutil.trident.spout.gnip.GnipDataExtractor;
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchBulkUpdateSentiment;
-import com.w2olabs.stormutil.trident.state.ElasticSearch.ElasticSearchState;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaConfiguration;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaGetInfo;
-import com.w2olabs.stormutil.trident.state.Semantria.SemantriaState;
-import com.w2olabs.stormutil.trident.state.kafka.KafkaConfiguration;
+import com.semantria.trident.trident.function.data.activitystreams.RawDataToActivityStream;
+import com.semantria.trident.trident.spout.gnip.GnipDataExtractor;
+import com.semantria.trident.trident.state.ElasticSearch.ElasticSearchBulkUpdateSentiment;
+import com.semantria.trident.trident.state.ElasticSearch.ElasticSearchState;
+import com.semantria.trident.state.Semantria.SemantriaGetInfo;
+import com.semantria.trident.state.Semantria.SemantriaState;
+import com.semantria.trident.trident.state.kafka.KafkaConfiguration;
 import com.w2olabs.stormutil.utils.TopologyConfiguration;
 import storm.kafka.KafkaConfig;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;

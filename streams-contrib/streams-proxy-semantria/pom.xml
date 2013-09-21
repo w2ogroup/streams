@@ -32,6 +32,16 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>storm</groupId>
+            <artifactId>storm</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-storm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

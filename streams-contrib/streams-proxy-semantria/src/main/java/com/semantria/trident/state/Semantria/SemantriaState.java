@@ -1,4 +1,4 @@
-package com.w2olabs.stormutil.trident.state.Semantria;
+package com.semantria.trident.state.Semantria;
 
 import com.semantria.mapping.output.DocAnalyticData;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -14,9 +14,6 @@ import storm.trident.tuple.TridentTuple;
 import com.semantria.mapping.Document;
 import com.semantria.Session;
 
-import javax.naming.Context;
-import javax.naming.Name;
-import javax.naming.NamingException;
 import storm.trident.state.StateFactory;
 import java.util.*;
 

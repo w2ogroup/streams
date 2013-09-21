@@ -115,10 +115,10 @@ public class TopologyReflectionLauncher {
                     mapper,
                     "streams").build(configFile);
         } catch(IOException e) {
-            configFile = new File(configFileUrl.getPath());
+            log.error("No config file", e.getMessage());
+            e.printStackTrace();
+            return;
         }
-
-        // load streams graph spec
 
         String pipelineIdentifier = streamsConfiguration.getPipeline();
 
@@ -139,12 +139,11 @@ public class TopologyReflectionLauncher {
             try {
                 Constructor ctor = topologyClass.getDeclaredConstructor(
                     String.class,
-                    StreamsConfiguration.class,
-                    String[].class);
+                    StreamsConfiguration.class);
                 ctor.setAccessible(true);
-                Object topologyObject = ctor.newInstance(args);
-                Method main = topologyClass.getMethod("main", String[].class);
-                main.invoke(topologyObject, args);
+                Object topologyObject = ctor.newInstance(pipelineIdentifier, streamsConfiguration);
+                Runnable runnable = (Runnable) topologyObject;
+                runnable.run();
             } catch (InstantiationException x) {
                 log.warn(x.getMessage());
                 x.printStackTrace();
@@ -157,6 +156,27 @@ public class TopologyReflectionLauncher {
             } catch (NoSuchMethodException x) {
                 log.warn(x.getMessage());
                 x.printStackTrace();
+
+                try {
+                    Constructor ctor = topologyClass.getDeclaredConstructor(
+                            String[].class);
+                    ctor.setAccessible(true);
+                    Object topologyObject = ctor.newInstance(args);
+                    Method main = topologyClass.getMethod("main", String[].class);
+                    main.invoke(topologyObject, args);
+                } catch (InstantiationException x2) {
+                    log.warn(x2.getMessage());
+                    x.printStackTrace();
+                } catch (IllegalAccessException x2) {
+                    log.warn(x2.getMessage());
+                    x.printStackTrace();
+                } catch (InvocationTargetException x2) {
+                    log.warn(x2.getMessage());
+                    x.printStackTrace();
+                } catch (NoSuchMethodException x2) {
+                    log.error(x2.getMessage());
+                    x.printStackTrace();
+                }
             }
         }
     }

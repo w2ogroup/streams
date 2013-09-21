@@ -1,4 +1,4 @@
-package com.w2olabs.stormutil.sentiment;
+package com.semantria.trident.util;
 
 import org.json.JSONObject;
 import com.semantria.Session;
@@ -12,7 +12,7 @@ import de.l3s.boilerpipe.extractors.LargestContentExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.w2olabs.stormutil.sentiment.ISentiment;
+import com.semantria.trident.util.ISentiment;
 
 import java.util.HashMap;
 import java.util.List;
