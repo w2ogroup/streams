@@ -109,8 +109,6 @@ public class TopologyReflectionLauncher {
             configFile = new File(configFileUrl.getPath());
         }
 
-        ConfigurationFactory configurationFactory;
-
         try {
             streamsConfiguration = new ConfigurationFactory<>(StreamsConfiguration.class,
                     Validation.buildDefaultValidatorFactory().getValidator(),
@@ -139,7 +137,10 @@ public class TopologyReflectionLauncher {
             Class topologyClass = topology.getRight();
 
             try {
-                Constructor ctor = topologyClass.getDeclaredConstructor(String[].class);
+                Constructor ctor = topologyClass.getDeclaredConstructor(
+                    String.class,
+                    StreamsConfiguration.class,
+                    String[].class);
                 ctor.setAccessible(true);
                 Object topologyObject = ctor.newInstance(args);
                 Method main = topologyClass.getMethod("main", String[].class);
