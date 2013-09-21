@@ -27,7 +27,7 @@
         <module>streams-provider-twitter</module>
         <module>streams-pojo-gplus</module>
         <module>streams-pojo-reddit</module>
-        <module>streams-proxy-semantria</module>
+        <!--<module>streams-proxy-semantria</module>-->
     </modules>
 
     <dependencyManagement>
