@@ -3,10 +3,12 @@ package org.apache.streams.data.util;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * JSON utilities
@@ -45,6 +47,21 @@ public class JsonUtil {
         } catch (IOException e) {
             throw new RuntimeException("Could not map to object");
         }
+    }
+
+    public static <T> T jsonNodeToObject(JsonNode node, Class<T> clazz) {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.convertValue(node, clazz);
+    }
+
+    public static <T> JsonNode objectToJsonNode(T obj) {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.valueToTree(obj);
+    }
+
+    public static <T> List<T> jsoNodeToList(JsonNode node, Class<T> clazz) {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.convertValue(node, new TypeReference<List<T>>() {});
     }
 
     public static <T> String objectToJson(T object) {
