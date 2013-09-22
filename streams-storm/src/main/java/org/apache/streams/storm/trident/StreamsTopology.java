@@ -14,6 +14,13 @@ public abstract class StreamsTopology extends TridentTopology {
 
     StreamsConfiguration configuration;
 
+    protected StreamsTopology() {
+    }
+
+    protected StreamsTopology(StreamsConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
     public StreamsConfiguration getConfiguration() {
         return configuration;
     }
