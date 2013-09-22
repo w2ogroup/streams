@@ -21,7 +21,7 @@ public class KafkaActivityStreamsRepository {
         // put
     }
 
-    public List<Activity> getActivitiesForFilters(List<String> filters, Date lastUpdated) {
+    public List<Activity> getActivities(Date lastUpdated) {
         List<Activity> results = new ArrayList<Activity>();
 
         // get

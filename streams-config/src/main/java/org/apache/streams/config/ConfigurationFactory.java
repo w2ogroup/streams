@@ -64,10 +64,10 @@ public class ConfigurationFactory<T> {
      * @throws ConfigurationException if there is an error validating the file
      */
     public T build(ConfigurationSourceProvider provider, String path) throws IOException {
-        try (InputStream input = provider.open(checkNotNull(path))) {
-            final JsonNode node = mapper.readTree(yamlFactory.createParser(input));
-            return build(node, path);
-        }
+        InputStream input;
+        input = provider.open(checkNotNull(path));
+        final JsonNode node = mapper.readTree(yamlFactory.createParser(input));
+        return build(node, path);
     }
 
     /**

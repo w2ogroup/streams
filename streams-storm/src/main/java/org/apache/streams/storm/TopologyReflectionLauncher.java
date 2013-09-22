@@ -110,7 +110,7 @@ public class TopologyReflectionLauncher {
         }
 
         try {
-            streamsConfiguration = new ConfigurationFactory<>(StreamsConfiguration.class,
+            streamsConfiguration = new ConfigurationFactory<StreamsConfiguration>(StreamsConfiguration.class,
                     Validation.buildDefaultValidatorFactory().getValidator(),
                     mapper,
                     "streams").build(configFile);

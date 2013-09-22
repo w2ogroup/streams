@@ -26,7 +26,7 @@ public class RegexUtils {
     public static List<String> getMatches(String line, String regEx, int group){
         Pattern pattern = Pattern.compile(regEx);
         Matcher matcher = pattern.matcher(line);
-        List<String> matches = new ArrayList<>();
+        List<String> matches = new ArrayList<String>();
 
         while (matcher.find()) {
 
@@ -37,7 +37,7 @@ public class RegexUtils {
     }
 
     public static List<Pair<String,String>> getTwoMatchedGroupsList(List<String> lines, String regEx){
-        List<Pair<String,String>> matches = new ArrayList<>();
+        List<Pair<String,String>> matches = new ArrayList<Pair<String,String>>();
 
         for( String line : lines ) {
 

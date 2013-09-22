@@ -37,17 +37,17 @@ import java.io.IOException;
  * Time: 3:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ActivitySemantriaRequestTopology extends StreamsTopology implements Runnable {
+public class ActivitySemantriaRequestTopology extends StreamsConfiguration implements Runnable {
 
     private Logger log = LoggerFactory.getLogger(ActivitySemantriaRequestTopology.class);
 
     private SemantriaConfiguration semantriaConfiguration;
 
-    public ActivitySemantriaRequestTopology(String pipelineIdentifier, StreamsConfiguration configuration) {
-        super(pipelineIdentifier,configuration);
-        this.pipelineIdentifier = pipelineIdentifier;
-        this.configuration = configuration;
-    }
+//    public ActivitySemantriaRequestTopology(String pipelineIdentifier, StreamsConfiguration configuration) {
+//        super(pipelineIdentifier,configuration);
+//        this.pipelineIdentifier = pipelineIdentifier;
+//        this.configuration = configuration;
+//    }
 
     public static SemantriaConfiguration provideConfiguration(StreamsConfiguration streamsConfiguration) {
 
