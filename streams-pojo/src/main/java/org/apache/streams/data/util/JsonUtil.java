@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * JSON utilities
@@ -54,5 +54,34 @@ public class JsonUtil {
         } catch (IOException e) {
             throw new RuntimeException("Could not map to object");
         }
+    }
+
+    public static JsonNode getFromFile(String filePath) {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonFactory factory = mapper.getFactory(); // since 2.1 use mapper.getFactory() instead
+
+        JsonNode node = null;
+        try {
+            InputStream stream = getStreamForLocation(filePath);
+            JsonParser jp = factory.createParser(stream);
+            node = mapper.readTree(jp);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return node;
+    }
+
+    private static InputStream getStreamForLocation(String filePath) throws FileNotFoundException {
+        InputStream stream = null;
+        if(filePath.startsWith("file:///")) {
+            stream = new FileInputStream(filePath.replace("file:///", ""));
+        } else if(filePath.startsWith("file:") || filePath.startsWith("/")) {
+            stream = new FileInputStream(filePath.replace("file:", ""));
+        } else {
+            //Assume classpath
+            stream = JsonUtil.class.getClassLoader().getResourceAsStream(filePath.replace("classpath:", ""));
+        }
+
+        return stream;
     }
 }

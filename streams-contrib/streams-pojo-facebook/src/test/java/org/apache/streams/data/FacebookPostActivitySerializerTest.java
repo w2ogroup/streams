@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonFactory;
+import org.apache.streams.data.util.JsonUtil;
 import org.apache.streams.pojo.Activity;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class FacebookPostActivitySerializerTest {
 
     @Before
     public void setup() throws IOException {
-        json = getJsonNode();
+        json = JsonUtil.getFromFile("classpath:org/apache/streams/data/Facebook.json");
         fields = discover(json);
 
         mapper = new ObjectMapper();
@@ -161,20 +162,6 @@ public class FacebookPostActivitySerializerTest {
                 mapNode(current, value);
             }
         }
-    }
-
-    private JsonNode getJsonNode() {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonFactory factory = mapper.getFactory(); // since 2.1 use mapper.getFactory() instead
-
-        JsonNode node = null;
-        try {
-            JsonParser jp = factory.createJsonParser(this.getClass().getResourceAsStream("Facebook.json"));
-            node = mapper.readTree(jp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return node;
     }
 
     private static class Node implements Comparable<Node>{

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.streams.data.util.JsonUtil;
 import org.apache.streams.pojo.Activity;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +44,7 @@ public class MoreoverJsonActivitySerializerTest {
 
     @Before
     public void setup() throws IOException {
-        json = getJsonNode();
+        json = JsonUtil.getFromFile("classpath:org/apache/streams/data/moreover.json");
 
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
@@ -65,20 +66,6 @@ public class MoreoverJsonActivitySerializerTest {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private JsonNode getJsonNode() {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonFactory factory = mapper.getFactory(); // since 2.1 use mapper.getFactory() instead
-
-        JsonNode node = null;
-        try {
-            JsonParser jp = factory.createJsonParser(this.getClass().getResourceAsStream("moreover.json"));
-            node = mapper.readTree(jp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return node;
     }
 
 }
