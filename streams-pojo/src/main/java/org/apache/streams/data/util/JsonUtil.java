@@ -73,6 +73,10 @@ public class JsonUtil {
         }
     }
 
+    public static <T> T getObjFromFile(String filePath, Class<T> clazz) {
+        return jsonNodeToObject(getFromFile(filePath), clazz);
+    }
+
     public static JsonNode getFromFile(String filePath) {
         ObjectMapper mapper = new ObjectMapper();
         JsonFactory factory = mapper.getFactory(); // since 2.1 use mapper.getFactory() instead
