@@ -30,7 +30,9 @@ public class MoreoverJsonActivitySerializer implements ActivitySerializer {
 
     @Override
     public Activity deserialize(String serialized) {
-        serialized = serialized.replace("[]", "null");
+        serialized = serialized.replaceAll("\\[[ ]*\\]", "null");
+
+        System.out.println(serialized);
 
         ObjectMapper mapper = new ObjectMapper();
         AnnotationIntrospector introspector = new JaxbAnnotationIntrospector(mapper.getTypeFactory());
