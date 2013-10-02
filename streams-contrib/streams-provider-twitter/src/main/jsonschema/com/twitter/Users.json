@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "#",
+  "javaType": "com.twitter.Users",
+  "properties": {
+    "location": {
+      "type": "string"
+    },
+    "default_profile": {
+      "type": "string"
+    },
+    "statuses_count": {
+      "type": "string"
+    },
+    "profile_background_title": {
+      "type": "boolean"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "profile_link_color": {
+      "type": "string"
+    },
+    "id": {
+      "type": "number"
+    },
+    "following": {
+      "type": "string"
+    },
+    "favourites_count": {
+      "type": "number"
+    },
+    "protected": {
+      "type": "boolean"
+    },
+    "profile_text_color": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "contributors_enabled": {
+      "type": "boolean"
+    },
+    "profile_sidebar_border_color": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "profile_background_color": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "default_profile_image": {
+      "type": "boolean"
+    },
+    "followers_count": {
+      "type": "number"
+    },
+    "profile_image_url_https": {
+      "type": "string"
+    },
+    "geo_enabled": {
+      "type": "boolean"
+    },
+    "profile_background_image_url": {
+      "type": "string"
+    },
+    "profile_background_image_url_https": {
+      "type": "string"
+    },
+    "entities": {
+      "description": {
+        "urls": {
+          "type": "string"
+        }
+      }
+    },
+    "follow_request_sent": {
+      "type": "boolean"
+    },
+    "url": {
+      "type": "string"
+    },
+    "utc_offset": {
+      "type": "number"
+    },
+    "time_zone": {
+      "type": "string"
+    },
+    "notifications": {
+      "type": "string"
+    },
+    "friends_count": {
+      "type": "string"
+    },
+    "profile_use_background_image": {
+      "type": "boolean"
+    },
+    "profile_sidebar_fill_color": {
+      "type": "string"
+    },
+    "screen_name": {
+      "type": "string"
+    },
+    "id_str": {
+      "type": "string"
+    },
+    "profile_image_url": {
+      "type": "string"
+    },
+    "is_translator": {
+      "type": "boolean"
+    },
+    "listed_count": {
+      "type": "number"
+    }
+  }
+}

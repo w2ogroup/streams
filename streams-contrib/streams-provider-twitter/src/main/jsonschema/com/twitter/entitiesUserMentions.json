@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "#",
+  "javaType": "com.twitter.EntitiesUserMentions",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "indices": {
+      "type": "array",
+      "properties": {
+        "type": "number"
+      }
+    },
+    "screen_name": {
+      "type": "string"
+    },
+    "id_str": {
+      "type": ""
+    }
+  }
+}

@@ -1,210 +1,170 @@
 {
-    "type": "object",
-    "$schema": "http://json-schema.org/draft-03/schema",
-    "id": "#",
-    "javaType" : "com.twitter.Tweet",
-    "properties": {
-        "text": {
-            "type": "string"
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "#",
+  "javaType": "com.twitter.Tweet",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "contributors": {
+      "type": "string"
+    },
+    "geo": {
+      "properties": {
+        "type": {
+          "type": "string"
         },
-        "retweeted": {
-            "type": "boolean"
-        },
-        "in_reply_to_screen_name": {
-            "type": "string"
-        },
-        "truncated": {
-            "type": "boolean"
-        },
-        "entities": {
-            "type": "object",
-            "dynamic": "true",
-            "javaType" : "com.twitter.Entities",
-            "properties": {
-                "user_mentions": {
-                    "type": "object",
-                    "dynamic": "true",
-                    "javaType" : "com.twitter.UserMentions",
-                    "properties": {
-                        "id": {
-                            "ignore_malformed": false,
-                            "type": "long"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "indices": {
-                            "ignore_malformed": false,
-                            "type": "long"
-                        },
-                        "screen_name": {
-                            "type": "string"
-                        },
-                        "id_str": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "in_reply_to_status_id_str": {
-            "type": "string"
-        },
-        "id": {
-            "ignore_malformed": false,
-            "type": "long"
-        },
-        "in_reply_to_user_id_str": {
-            "type": "string"
-        },
-        "source": {
-            "type": "string"
-        },
-        "favorited": {
-            "type": "boolean"
-        },
-        "in_reply_to_status_id": {
-            "ignore_malformed": false,
-            "type": "long"
-        },
-        "created_at": {
-            "type": "string"
-        },
-        "in_reply_to_user_id": {
-            "ignore_malformed": false,
-            "type": "long"
-        },
-        "retweet_count": {
-            "ignore_malformed": false,
-            "type": "long"
-        },
-        "id_str": {
-            "type": "string"
-        },
-        "user": {
-            "id": "user",
-            "type": "object",
-            "javaType" : "com.twitter.User",
-    		"dynamic": "true",
-            "properties": {
-                "location": {
-                    "type": "string"
-                },
-                "default_profile": {
-                    "type": "boolean"
-                },
-                "statuses_count": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "profile_background_tile": {
-                    "type": "boolean"
-                },
-                "lang": {
-                    "type": "string"
-                },
-                "profile_link_color": {
-                    "type": "string"
-                },
-                "id": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "protected": {
-                    "type": "boolean"
-                },
-                "favourites_count": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "profile_text_color": {
-                    "type": "string"
-                },
-                "verified": {
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "contributors_enabled": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "profile_sidebar_border_color": {
-                    "type": "string"
-                },
-                "profile_background_color": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "default_profile_image": {
-                    "type": "boolean"
-                },
-                "followers_count": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "geo_enabled": {
-                    "type": "boolean"
-                },
-                "profile_image_url_https": {
-                    "type": "string",
-                    "analyzer": "uax_url_email"
-                },
-                "profile_background_image_url": {
-                    "type": "string",
-                    "analyzer": "uax_url_email"
-                },
-                "profile_background_image_url_https": {
-                    "type": "string",
-                    "analyzer": "uax_url_email"
-                },
-                "follow_request_sent": {
-                    "type": "boolean"
-                },
-                "url": {
-                    "type": "string",
-                    "analyzer": "uax_url_email"
-                },
-                "utc_offset": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "time_zone": {
-                    "type": "string"
-                },
-                "profile_use_background_image": {
-                    "type": "boolean"
-                },
-                "friends_count": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                },
-                "profile_sidebar_fill_color": {
-                    "type": "string"
-                },
-                "screen_name": {
-                    "type": "string"
-                },
-                "id_str": {
-                    "type": "string"
-                },
-                "profile_image_url": {
-                    "type": "string",
-                    "analyzer": "uax_url_email"
-                },
-                "is_translator": {
-                    "type": "boolean"
-                },
-                "listed_count": {
-                    "ignore_malformed": false,
-                    "type": "long"
-                }
-            }
+        "coordinates": {
+          "type": "array",
+          "properties": {
+            "type": "number"
+          }
         }
+      }
+    },
+    "retweeted": {
+      "type": "boolean"
+    },
+    "in_reply_to_screen_name": {
+      "type": "string"
+    },
+    "possibly_sensitive": {
+      "type": "boolean"
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "entities": {
+      "properties": {
+        "symbols": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "urls": {
+          "type": "array",
+          "properties": {
+            "$ref": "./entitiesUrl"
+          }
+        },
+        "hashtags": {
+          "type": "array",
+          "properties": {
+            "$ref": "./entitesHashtags"
+          }
+        },
+        "user_mentions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "./entitiesUserMentions"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "in_reply_to_user_id_str": {
+      "type": "string"
+    },
+    "id": {
+      "type": "number"
+    },
+    "in_reply_to_status_id_str": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "favorited": {
+      "type": "boolean"
+    },
+    "in_reply_to_status_id": {
+      "type": "string"
+    },
+    "in_reply_to_user_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "retweet_count": {
+      "type": "number"
+    },
+    "favorite_count": {
+      "type": "number"
+    },
+    "id_str": {
+      "type": "string"
+    },
+    "place": {
+      "properties": {
+        "id": {
+          "New name-value pair 0": "string"
+        },
+        "place_type": {
+          "type": "string"
+        },
+        "bounding_box": {
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "coordinates": {
+              "type": "array",
+              "properties": {
+                "type": ""
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "attributes": {
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "user": {
+      "properties": {
+        "type": "object",
+        "$ref": ""
+      }
+    },
+    "coordinates": {
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "properties": {
+            "type": ""
+          }
+        }
+      }
+    },
+    "__id": {
+      "type": "string"
     }
+  }
 }

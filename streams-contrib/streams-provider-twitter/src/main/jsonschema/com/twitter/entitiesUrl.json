@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "title": "entitesUrl",
+  "javaType": "com.twitter.EntitiesUrl",
+  "properties": {
+    "expanded_url": "string",
+    "indices": {
+      "type": "array",
+      "properties": {
+        "type" : "number"
+      }
+    },
+    "display_url": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": ""
+}
