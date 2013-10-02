@@ -1,26 +1,18 @@
 package org.apache.streams.data;
 
-import com.twitter.Tweet;
-import org.apache.streams.data.TwitterJsonActivitySerializer;
-import org.apache.streams.pojo.Activity;
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Joiner;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.BoundedInputStream;
+import com.facebook.Post;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import static java.util.regex.Pattern.matches;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 /**
 * Created with IntelliJ IDEA.
@@ -31,44 +23,39 @@ import static org.junit.Assert.assertThat;
 */
 public class FacebookPostSerDeTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TweetSerDeTest.class);
-    private ActivitySerializer serializer = new TwitterJsonActivitySerializer();
+    private final static Logger LOGGER = LoggerFactory.getLogger(FacebookPostSerDeTest.class);
+    //private ActivitySerializer serializer = new TwitterJsonActivitySerializer();
     private ObjectMapper mapper = new ObjectMapper();
 
-//    @Ignore
+    @Ignore
     @Test
     public void Tests()
     {
-        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
-        mapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
-        mapper.configure(DeserializationConfig.Feature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.TRUE);
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
+        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        InputStream is = TweetSerDeTest.class.getResourceAsStream("/twitter_dr_jsons.txt");
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
+        InputStream is = FacebookPostSerDeTest.class.getResourceAsStream("/testpost.json");
+        Joiner joiner = Joiner.on(" ").skipNulls();
+        is = new BoundedInputStream(is, 10000);
+        String json;
 
         try {
-            while (br.ready()) {
-                String line = br.readLine();
+            json = joiner.join(IOUtils.readLines(is));
+            LOGGER.debug(json);
 
-                LOGGER.info(line);
+            Post ser = mapper.readValue(json, Post.class);
 
-                Tweet ser = mapper.readValue(line, Tweet.class);
+            String de = mapper.writeValueAsString(ser);
 
-                String des = mapper.writeValueAsString(ser);
-                LOGGER.debug(des);
+            LOGGER.debug(de);
 
-                Activity activity = serializer.deserialize(des);
+            Post serde = mapper.readValue(de, Post.class);
 
-                assertThat(activity, is(not(nullValue())));
-                assertThat(activity.getActor(), is(not(nullValue())));
-                assertThat(activity.getObject(), is(not(nullValue())));
-                assertThat(activity.getAdditionalProperties().get("extensions"),is(not(nullValue())));
-                if(activity.getObject().getId() != null) {
-                    assertThat(matches("id:.*:[a-z]*:[a-zA-Z0-9]*", activity.getObject().getId()), is(true));
-                }
-                assertThat(activity.getObject().getObjectType(), is(not(nullValue())));
-            }
+            Assert.assertEquals(ser, serde);
+
+            LOGGER.debug(mapper.writeValueAsString(serde));
+
         } catch( Exception e ) {
             System.out.println(e);
             e.printStackTrace();

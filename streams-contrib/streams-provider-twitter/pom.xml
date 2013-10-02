@@ -36,6 +36,10 @@
             <groupId>org.apache.streams</groupId>
             <artifactId>streams-pojo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
