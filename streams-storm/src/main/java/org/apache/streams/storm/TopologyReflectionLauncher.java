@@ -1,5 +1,6 @@
 package org.apache.streams.storm;
 
+import backtype.storm.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -33,6 +34,7 @@ public class TopologyReflectionLauncher {
     private static final Logger log = LoggerFactory.getLogger(TopologyReflectionLauncher.class);
 
     private static StreamsConfiguration streamsConfiguration;
+    private static Config stormConfiguration;
 
     private static List<Pair<String,Class>> topologies;
 
@@ -89,12 +91,12 @@ public class TopologyReflectionLauncher {
 
         if(args.length < 3) {
             log.error("Not enough arguments");
-            log.error("  storm deploy <configfile> <pipelinefile>");
+            log.error("  storm {local,deploy} <pipelinedef>");
             return;
         }
         if(!args[1].equals("deploy")) {
             log.error("Not a deploy");
-            log.error("  storm deploy <configfile> <pipelinefile>");
+            log.error("  storm {local,deploy} <pipelinedef>");
             return;
         }
 
@@ -121,6 +123,11 @@ public class TopologyReflectionLauncher {
         }
 
         String pipelineIdentifier = streamsConfiguration.getPipeline();
+
+        for( Map.Entry<String, Object> moduleConfig : streamsConfiguration.getAdditionalProperties().entrySet()) {
+
+        }
+
 
         URL pipelineFileUrl = TopologyReflectionLauncher.class.getResource(args[1]);
 
