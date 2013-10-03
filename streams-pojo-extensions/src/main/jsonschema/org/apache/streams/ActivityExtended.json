@@ -3,14 +3,14 @@
     "title" : "activity",
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "#",
-    "javaType" : "org.apache.streams.pojo.ActivityExtended",
+    "javaType" : "org.apache.streams.pojo.json.ActivityExtended",
     "properties": {
         "extensions": {
             "type": "object",
             "dynamic": "true",
             "required": false,
             "description": "Extension fields go here.",
-            "javaType" : "org.apache.streams.pojo.Extensions"
+            "javaType" : "org.apache.streams.pojo.json.Extensions"
         }
     },
     "extends": "file://../../../../../../../streams-pojo/src/main/jsonschema/org/apache/streams/pojo/activity.json"

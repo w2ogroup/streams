@@ -1,10 +1,10 @@
 package org.apache.streams.data.util;
 
 import com.moreover.api.*;
-import org.apache.streams.pojo.Activity;
-import org.apache.streams.pojo.ActivityObject;
-import org.apache.streams.pojo.Actor;
-import org.apache.streams.pojo.Provider;
+import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.pojo.json.ActivityObject;
+import org.apache.streams.pojo.json.Actor;
+import org.apache.streams.pojo.json.Provider;
 
 import java.text.DateFormat;
 import java.text.ParseException;

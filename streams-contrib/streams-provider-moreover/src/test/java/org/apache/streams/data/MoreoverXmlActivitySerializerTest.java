@@ -2,7 +2,7 @@ package org.apache.streams.data;
 
 
 import org.apache.commons.io.IOUtils;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import com.moreover.api.Article;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.data.util.MoreoverUtils;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,7 +1,7 @@
 {
   "type" : "object",
   "title" : "object",
-  "javaType": "org.apache.streams.pojo.ActivityObject",
+  "javaType": "org.apache.streams.pojo.json.ActivityObject",
   "description" : "Basic object on the web. The only required property is the id",
   "properties" : {
     "id" : {

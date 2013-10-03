@@ -3,7 +3,7 @@ package org.apache.streams.data;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.NotImplementedException;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;

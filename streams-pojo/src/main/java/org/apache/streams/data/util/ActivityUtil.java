@@ -1,6 +1,6 @@
 package org.apache.streams.data.util;
 
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -5,7 +5,7 @@ import com.moreover.api.ArticlesResponse;
 import com.moreover.api.ObjectFactory;
 import org.apache.commons.lang.SerializationException;
 import org.apache.streams.data.util.MoreoverUtils;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

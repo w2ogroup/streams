@@ -17,18 +17,15 @@
  */
 package org.apache.streams.data;
 
-import com.fasterxml.jackson.core.JsonParser;
+import com.facebook.api.FacebookPostActivitySerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonFactory;
 import org.apache.streams.data.util.JsonUtil;
-import org.apache.streams.pojo.Activity;
-import org.hamcrest.Matcher;
+import org.apache.streams.pojo.json.Activity;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.*;

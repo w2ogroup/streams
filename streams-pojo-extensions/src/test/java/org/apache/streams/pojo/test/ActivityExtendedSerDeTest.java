@@ -1,12 +1,12 @@
-package org.apache.streams.pojo.test;
+package org.apache.streams.pojo.json.test;
 
 import com.google.common.base.Joiner;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BoundedInputStream;
-import org.apache.streams.pojo.ActivityExtended;
-import org.apache.streams.pojo.Activity;
-import org.apache.streams.pojo.Extensions;
+import org.apache.streams.pojo.json.ActivityExtended;
+import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.pojo.json.Extensions;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;

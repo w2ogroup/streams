@@ -18,7 +18,7 @@
 
 package org.apache.streams.data;
 
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 
 import java.util.List;
 

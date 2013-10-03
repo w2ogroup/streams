@@ -3,7 +3,7 @@ package com.twitter.test;
 import com.twitter.Tweet;
 import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.data.TwitterJsonActivitySerializer;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;

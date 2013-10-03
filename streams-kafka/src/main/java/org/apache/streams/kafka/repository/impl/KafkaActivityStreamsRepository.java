@@ -1,6 +1,6 @@
 package org.apache.streams.kafka.repository.impl;
 
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

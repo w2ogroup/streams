@@ -16,12 +16,13 @@
  * under the License.
  */
 
-package org.apache.streams.data;
+package com.facebook.api;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang.NotImplementedException;
-import org.apache.streams.pojo.*;
+import org.apache.streams.data.ActivitySerializer;
+import org.apache.streams.pojo.json.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;

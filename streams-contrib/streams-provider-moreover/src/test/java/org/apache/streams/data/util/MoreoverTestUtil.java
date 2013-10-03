@@ -2,7 +2,7 @@ package org.apache.streams.data.util;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 
 import static java.util.regex.Pattern.matches;
 import static org.hamcrest.CoreMatchers.*;

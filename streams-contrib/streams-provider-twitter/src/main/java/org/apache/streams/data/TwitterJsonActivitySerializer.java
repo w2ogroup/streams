@@ -11,8 +11,8 @@ import org.apache.streams.data.util.*;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.data.ActivitySerializer;
-import org.apache.streams.pojo.Activity;
-import org.apache.streams.pojo.Article;
+import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.pojo.json.Article;
 
 import java.io.IOException;
 import java.util.List;

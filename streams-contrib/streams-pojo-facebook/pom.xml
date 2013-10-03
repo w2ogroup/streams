@@ -85,10 +85,32 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/facebook</sourcePath>
+                        <sourcePath>src/main/jsonschema/com/facebook/graph</sourcePath>
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>com.facebook</targetPackage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.3</version>
+                <configuration>
+                    <schemaDirectory>src/main/xmlschema/</schemaDirectory>
+                    <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
+                    <verbose>true</verbose>
+                    <debug>true</debug>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <forceRegenerate>true</forceRegenerate>
+                    <removeOldOutput>false</removeOldOutput>
+                    <generatePackage>org.apache.streams.pojo.xml</generatePackage>
                 </configuration>
                 <executions>
                     <execution>

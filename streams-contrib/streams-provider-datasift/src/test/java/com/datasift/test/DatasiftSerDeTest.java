@@ -31,7 +31,7 @@ public class DatasiftSerDeTest {
     @Test
     public void Tests()
     {
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
@@ -46,8 +46,15 @@ public class DatasiftSerDeTest {
 
                 Datasift ser = mapper.readValue(line, Datasift.class);
 
-                String des = mapper.writeValueAsString(ser);
-                LOGGER.debug(des);
+                String de = mapper.writeValueAsString(ser);
+
+                LOGGER.debug(de);
+
+                Datasift serde = mapper.readValue(de, Datasift.class);
+
+                Assert.assertEquals(ser, serde);
+
+                LOGGER.debug(mapper.writeValueAsString(serde));
             }
         } catch( Exception e ) {
             e.printStackTrace();

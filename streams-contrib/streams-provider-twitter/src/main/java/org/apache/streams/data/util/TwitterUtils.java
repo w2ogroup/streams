@@ -2,7 +2,7 @@ package org.apache.streams.data.util;
 
 
 import com.twitter.Users;
-import org.apache.streams.pojo.*;
+import org.apache.streams.pojo.json.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;

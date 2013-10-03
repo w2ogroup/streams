@@ -114,6 +114,18 @@
                             </sources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>add-source-jaxb2</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/jaxb2</source>
+                            </sources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -124,12 +136,12 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
                     <sourcePaths>
-                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo</sourcePath>
-                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/objectTypes</sourcePath>
-                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/verbs</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/json</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/json/objectTypes</sourcePath>
+                        <sourcePath>src/main/jsonschema/org/apache/streams/pojo/json/verbs</sourcePath>
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
-                    <targetPackage>org.apache.streams.pojo</targetPackage>
+                    <targetPackage>org.apache.streams.pojo.json</targetPackage>
                 </configuration>
                 <executions>
                     <execution>
@@ -139,22 +151,28 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-remote-resources-plugin</artifactId>-->
-                <!--<version>1.5</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>bundle</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<includes>-->
-                        <!--<include>**/*.json</include>-->
-                    <!--</includes>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.3</version>
+                <configuration>
+                    <schemaDirectory>src/main/xmlschema/org/apache/streams/pojo/xml</schemaDirectory>
+                    <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
+                    <verbose>true</verbose>
+                    <debug>true</debug>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <forceRegenerate>true</forceRegenerate>
+                    <removeOldOutput>false</removeOldOutput>
+                    <generatePackage>org.apache.streams.pojo.xml</generatePackage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

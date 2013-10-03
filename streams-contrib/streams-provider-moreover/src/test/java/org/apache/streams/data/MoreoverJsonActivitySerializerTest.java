@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.streams.data.util.JsonUtil;
-import org.apache.streams.pojo.Activity;
+import org.apache.streams.pojo.json.Activity;
 import org.junit.Before;
 import org.junit.Test;
 
