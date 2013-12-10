@@ -1,18 +1,17 @@
 package org.apache.streams.data.util;
 
-
-import com.twitter.Users;
 import org.apache.streams.pojo.json.*;
+import org.apache.streams.twitter.Tweet;
+import org.apache.streams.twitter.User;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.List;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.apache.streams.data.util.ActivityUtil.ensureExtensions;
-
-import com.twitter.Tweet;
 
 /**
 * Created with IntelliJ IDEA.
@@ -54,12 +53,12 @@ public class TwitterUtils {
 
     public static Actor buildActor(Tweet tweet) {
         Actor actor = new Actor();
-        LinkedHashMap<Object,Object> user = (LinkedHashMap<Object,Object>) tweet.getUser();
+        User user = tweet.getUser();
         actor.setId(formatId(tweet.getId_str()));
-        actor.setDisplayName(user.get("screen_name").toString());
-        actor.setId(user.get("id_str").toString());
-        if (user.get("url")!=null){
-            actor.setUrl(user.get("url").toString());
+        actor.setDisplayName(user.getScreen_name());
+        actor.setId(user.getId_str());
+        if (user.getUrl()!=null){
+            actor.setUrl(user.getUrl());
         }
         return actor;
     }
@@ -130,18 +129,15 @@ public class TwitterUtils {
         twitter.put("in_reply_to_status_id", tweet.getIn_reply_to_status_id());
         twitter.put("in_reply_to_user_id", tweet.getIn_reply_to_user_id_str());
         twitter.put("retweeted_count", tweet.getRetweet_count());
-        twitter.put("__id", tweet.get__id());
         twitter.put("users", tweet.getUser());
         extenstions.put("twitter", twitter);
     }
 
     public static void addLocationExtension(Activity activity, Tweet tweet) {
-        Map<String, Object> extentions = ensureExtensions(activity);
+        Map<String, Object> extensions = ensureExtensions(activity);
         Map<String, Object> location = new HashMap<String, Object>();
         location.put("id", formatId(tweet.getId_str()));
-        location.put("geo", tweet.getGeo());
-        location.put("place", tweet.getPlace());
         location.put("coordinates", tweet.getCoordinates());
-        extentions.put("location", location);
+        extensions.put("location", location);
     }
 }

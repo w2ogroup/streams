@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "#",
+    "javaType" : "org.apache.streams.twitter.TwitterStreamConfiguration",
+    "properties": {
+        "protocol": {
+            "type": "string",
+            "description": "The protocol",
+            "default": "https"
+        },
+        "host": {
+            "type": "string",
+            "description": "The host",
+            "default": "stream.twitter.com"
+        },
+        "port": {
+            "type": "integer",
+            "description": "The port",
+            "default": "443"
+        },
+        "version": {
+            "type": "string",
+            "description": "The endpoint",
+            "default": "1.1"
+        },
+        "endpoint": {
+            "type": "string",
+            "description": "The endpoint",
+            "default": "statuses/sample.json"
+        },
+        "baseUrl": {
+            "type": "string",
+            "description": "The endpoint",
+            "default": "https://stream.twitter.com/1.1/statuses/sample.json"
+        },
+        "includeEntities": {
+            "type": "string"
+        },
+        "jsonStoreEnabled": {
+            "type": "string"
+        },
+        "truncated": {
+            "type": "boolean"
+        },
+        "filter-level": {
+            "type": "string",
+            "description": "Setting this parameter to one of none, low, or medium will set the minimum value of the filter_level Tweet attribute required to be included in the stream",
+            "default": "none"
+        },
+        "follow": {
+            "type": "array",
+            "description": "A list of user IDs, indicating the users whose Tweets should be delivered on the stream",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "track": {
+            "type": "array",
+            "description": "A list of phrases which will be used to determine what Tweets will be delivered on the stream",
+            "items": {
+                "type": "string"
+            }
+        },
+        "oauth": {
+            "type": "object",
+            "dynamic": "true",
+            "javaType" : "org.apache.streams.twitter.TwitterOAuthConfiguration",
+            "properties": {
+                "appName": {
+                    "type": "string"
+                },
+                "consumerKey": {
+                    "type": "string"
+                },
+                "consumerSecret": {
+                    "type": "string"
+                },
+                "accessToken": {
+                    "type": "string"
+                },
+                "accessTokenSecret": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

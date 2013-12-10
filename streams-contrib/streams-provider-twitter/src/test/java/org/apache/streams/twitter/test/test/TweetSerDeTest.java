@@ -1,13 +1,12 @@
-package com.twitter.test;
+package org.apache.streams.twitter.test.test;
 
-import com.twitter.Tweet;
 import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.data.TwitterJsonActivitySerializer;
 import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.twitter.Tweet;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import static java.util.regex.Pattern.matches;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 /**

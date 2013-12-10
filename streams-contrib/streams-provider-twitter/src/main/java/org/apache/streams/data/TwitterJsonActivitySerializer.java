@@ -2,17 +2,13 @@ package org.apache.streams.data;
 
 import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.twitter.Tweet;
-import org.apache.streams.data.util.*;
-
 import org.apache.commons.lang.NotImplementedException;
-import org.apache.streams.data.ActivitySerializer;
+import org.apache.streams.data.util.TwitterUtils;
 import org.apache.streams.pojo.json.Activity;
-import org.apache.streams.pojo.json.Article;
+import org.apache.streams.twitter.Tweet;
 
 import java.io.IOException;
 import java.util.List;
