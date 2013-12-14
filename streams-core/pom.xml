@@ -9,18 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-persist-kafka</artifactId>
+    <artifactId>streams-core</artifactId>
+    <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.streams</groupId>
-            <artifactId>streams-pojo</artifactId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.clojars.smallrivers</groupId>
-            <artifactId>kafka</artifactId>
-            <version>0.7.0</version>
-        </dependency>
-    </dependencies>
 </project>

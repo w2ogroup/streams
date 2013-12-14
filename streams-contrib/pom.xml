@@ -18,8 +18,8 @@
     </properties>
 
     <modules>
-        <module>streams-persist-console</module>
-        <module>streams-persist-kafka</module>
+        <module>streams-persister-console</module>
+        <module>streams-persister-kafka</module>
         <module>streams-provider-datasift</module>
         <module>streams-pojo-facebook</module>
         <module>streams-provider-gnip</module>
@@ -37,6 +37,11 @@
             <dependency>
                 <groupId>org.apache.streams</groupId>
                 <artifactId>streams-config</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.streams</groupId>
+                <artifactId>streams-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
