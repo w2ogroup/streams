@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
@@ -41,8 +46,27 @@
             <artifactId>streams-config</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-storm</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>optional</scope>
+        </dependency>
+        <dependency>
+            <groupId>storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
         </dependency>
         <dependency>
             <groupId>com.twitter</groupId>
@@ -110,7 +134,8 @@
                         <sourcePath>src/main/jsonschema/com/twitter</sourcePath>
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
-                    <targetPackage>com.twitter</targetPackage>
+                    <targetPackage>org.apache.streams.twitter.pojo</targetPackage>
+                    <useLongIntegers>true</useLongIntegers>
                 </configuration>
                 <executions>
                     <execution>

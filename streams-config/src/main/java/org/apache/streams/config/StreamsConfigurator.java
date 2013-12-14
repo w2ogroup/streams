@@ -1,5 +1,8 @@
 package org.apache.streams.config;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sblackmon
@@ -9,6 +12,9 @@ package org.apache.streams.config;
  */
 public class StreamsConfigurator {
 
-//    public static Config config = ConfigFactory.load();
+    /*
+        Pull all configuration files from the classpath, system properties, and environment variables
+     */
+    public static Config config = ConfigFactory.load();
 
 }

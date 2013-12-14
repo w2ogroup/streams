@@ -6,33 +6,23 @@
     "properties": {
         "protocol": {
             "type": "string",
-            "description": "The protocol",
-            "default": "https"
+            "description": "The protocol"
         },
         "host": {
             "type": "string",
-            "description": "The host",
-            "default": "stream.twitter.com"
+            "description": "The host"
         },
         "port": {
             "type": "integer",
-            "description": "The port",
-            "default": "443"
+            "description": "The port"
         },
         "version": {
             "type": "string",
-            "description": "The endpoint",
-            "default": "1.1"
+            "description": "The version"
         },
         "endpoint": {
             "type": "string",
-            "description": "The endpoint",
-            "default": "statuses/sample.json"
-        },
-        "baseUrl": {
-            "type": "string",
-            "description": "The endpoint",
-            "default": "https://stream.twitter.com/1.1/statuses/sample.json"
+            "description": "The endpoint"
         },
         "includeEntities": {
             "type": "string"
@@ -45,8 +35,7 @@
         },
         "filter-level": {
             "type": "string",
-            "description": "Setting this parameter to one of none, low, or medium will set the minimum value of the filter_level Tweet attribute required to be included in the stream",
-            "default": "none"
+            "description": "Setting this parameter to one of none, low, or medium will set the minimum value of the filter_level Tweet attribute required to be included in the stream"
         },
         "follow": {
             "type": "array",

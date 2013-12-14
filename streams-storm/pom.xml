@@ -18,6 +18,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.streams</groupId>
+            <artifactId>streams-config-graph</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
             <artifactId>streams-util</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
@@ -27,12 +32,16 @@
         </dependency>
         <dependency>
             <groupId>storm</groupId>
-            <artifactId>storm</artifactId>
+            <artifactId>storm-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>storm</groupId>
+            <artifactId>storm-netty</artifactId>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.8.0</version>
+            <version>2.9.2</version>
             <scope>compile</scope>
             <type>jar</type>
         </dependency>

@@ -1,4 +1,4 @@
-package org.apache.streams.twitter.test.test;
+package org.apache.streams.twitter.test;
 
 import com.google.common.collect.Lists;
 import org.apache.streams.twitter.TwitterOAuthConfiguration;
