@@ -16,6 +16,7 @@ import com.twitter.hbc.httpclient.BasicClient;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
 import com.typesafe.config.Config;
+import org.apache.streams.StreamsProvider;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ import java.util.concurrent.*;
 /**
  * Created by sblackmon on 12/10/13.
  */
-public class TwitterStreamProvider /*extends BaseRichSpout*/ implements Runnable {
+public class TwitterStreamProvider /*extends BaseRichSpout*/ implements StreamsProvider, Runnable {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(TwitterStreamProvider.class);
 

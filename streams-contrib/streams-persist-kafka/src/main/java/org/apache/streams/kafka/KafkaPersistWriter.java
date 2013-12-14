@@ -6,7 +6,7 @@ import com.typesafe.config.Config;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
-import org.apache.streams.StreamsPersister;
+import org.apache.streams.StreamsPersistWriter;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.util.GuidUtils;
@@ -17,9 +17,9 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
-public class KafkaPersister implements StreamsPersister, Runnable {
+public class KafkaPersistWriter implements StreamsPersistWriter, Runnable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPersister.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPersistWriter.class);
 
     private BlockingQueue<Object> outqueue;
 
@@ -29,7 +29,7 @@ public class KafkaPersister implements StreamsPersister, Runnable {
 
     private Producer<String, String> producer;
 
-    public KafkaPersister(BlockingQueue<Object> outqueue) {
+    public KafkaPersistWriter(BlockingQueue<Object> outqueue) {
         Config config = StreamsConfigurator.config.getConfig("kafka");
         this.config = KafkaConfigurator.detectConfiguration(config);
         this.outqueue = outqueue;
