@@ -1,6 +1,5 @@
 package org.apache.streams.twitter.provider;
 
-import backtype.storm.spout.SpoutOutputCollector;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
@@ -22,13 +21,14 @@ import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.*;
 
 /**
  * Created by sblackmon on 12/10/13.
  */
-public class TwitterStreamProvider /*extends BaseRichSpout*/ implements StreamsProvider, Runnable {
+public class TwitterStreamProvider /*extends BaseRichSpout*/ implements StreamsProvider, Serializable, Runnable {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(TwitterStreamProvider.class);
 
@@ -45,8 +45,6 @@ public class TwitterStreamProvider /*extends BaseRichSpout*/ implements StreamsP
     }
 
     BlockingQueue<String> inQueue = new LinkedBlockingQueue<String>(10000);
-
-    SpoutOutputCollector collector;
 
     private StreamingEndpoint endpoint;
     private BasicClient client;

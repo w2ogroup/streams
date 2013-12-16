@@ -13,11 +13,13 @@ import org.apache.streams.util.GuidUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class KafkaPersistWriter implements StreamsPersistWriter, Runnable {
+public class KafkaPersistWriter implements StreamsPersistWriter, Serializable, Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPersistWriter.class);
 
@@ -29,9 +31,25 @@ public class KafkaPersistWriter implements StreamsPersistWriter, Runnable {
 
     private Producer<String, String> producer;
 
+    public KafkaPersistWriter() {
+        Config config = StreamsConfigurator.config.getConfig("kafka");
+        this.config = KafkaConfigurator.detectConfiguration(config);
+        this.outqueue = new LinkedBlockingQueue<Object>(1000);
+    }
+
     public KafkaPersistWriter(BlockingQueue<Object> outqueue) {
         Config config = StreamsConfigurator.config.getConfig("kafka");
         this.config = KafkaConfigurator.detectConfiguration(config);
+        this.outqueue = outqueue;
+    }
+
+    public KafkaPersistWriter(KafkaConfiguration config) {
+        this.config = config;
+        this.outqueue = new LinkedBlockingQueue<Object>(1000);
+    }
+
+    public KafkaPersistWriter(KafkaConfiguration config, BlockingQueue<Object> outqueue) {
+        this.config = config;
         this.outqueue = outqueue;
     }
 
@@ -40,7 +58,7 @@ public class KafkaPersistWriter implements StreamsPersistWriter, Runnable {
 
         props.put("metadata.broker.list", config.getBrokerlist());
         props.put("serializer.class", "kafka.serializer.StringEncoder");
-        props.put("partitioner.class", "example.producer.SimplePartitioner");
+        props.put("partitioner.class", "org.apache.streams.kafka.StreamsPartitioner");
         props.put("request.required.acks", "1");
 
         ProducerConfig config = new ProducerConfig(props);

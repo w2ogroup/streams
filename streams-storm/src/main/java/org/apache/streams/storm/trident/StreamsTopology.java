@@ -1,6 +1,8 @@
 package org.apache.streams.storm.trident;
 
+import backtype.storm.Config;
 import org.apache.streams.StreamsConfiguration;
+import org.apache.streams.config.StreamsConfigurator;
 import storm.trident.TridentTopology;
 
 /**
@@ -13,8 +15,14 @@ import storm.trident.TridentTopology;
 public abstract class StreamsTopology extends TridentTopology {
 
     StreamsConfiguration configuration;
+    Config stormConfig;
+    String runmode;
 
     protected StreamsTopology() {
+
+        runmode = StreamsConfigurator.config.getConfig("storm").getString("runmode");
+        stormConfig = new Config();
+
     }
 
     protected StreamsTopology(StreamsConfiguration configuration) {
@@ -29,4 +37,19 @@ public abstract class StreamsTopology extends TridentTopology {
         this.configuration = configuration;
     }
 
+    public String getRunmode() {
+        return runmode;
+    }
+
+    public void setRunmode(String runmode) {
+        this.runmode = runmode;
+    }
+
+    public Config getStormConfig() {
+        return stormConfig;
+    }
+
+    public void setStormConfig(Config stormConfig) {
+        this.stormConfig = stormConfig;
+    }
 }
