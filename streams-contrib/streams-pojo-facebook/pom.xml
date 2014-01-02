@@ -78,9 +78,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.3.7</version>
                 <configuration>
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
@@ -89,6 +88,8 @@
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>com.facebook</targetPackage>
+                    <useLongIntegers>true</useLongIntegers>
+                    <useJodaDates>true</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>
@@ -103,7 +104,7 @@
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.8.3</version>
                 <configuration>
-                    <schemaDirectory>src/main/xmlschema/</schemaDirectory>
+                    <schemaDirectory>../streams-provider-gnip/gnip-powertrack/src/main/xmlschema/</schemaDirectory>
                     <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
                     <verbose>true</verbose>
                     <debug>true</debug>

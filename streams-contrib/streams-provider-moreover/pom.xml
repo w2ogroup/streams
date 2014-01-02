@@ -22,7 +22,11 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.jsonschema2pojo</groupId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-json-org</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jsonschema2pojo</groupId>
             <artifactId>jsonschema2pojo-core</artifactId>
         </dependency>
         <dependency>
@@ -34,8 +38,16 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.streams</groupId>
@@ -89,9 +101,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.3.7</version>
                 <configuration>
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
@@ -100,6 +111,8 @@
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>com.moreover</targetPackage>
+                    <useLongIntegers>true</useLongIntegers>
+                    <useJodaDates>true</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>
@@ -112,7 +125,6 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.8.3</version>
                 <configuration>
                     <schemaDirectory>src/main/xmlschema/com/moreover/</schemaDirectory>
                     <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
@@ -122,6 +134,13 @@
                     <forceRegenerate>true</forceRegenerate>
                     <removeOldOutput>false</removeOldOutput>
                     <generatePackage>com.moreover.api</generatePackage>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                            <version>0.6.5</version>
+                        </plugin>
+                    </plugins>
                 </configuration>
                 <executions>
                     <execution>

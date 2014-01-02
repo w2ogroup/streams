@@ -23,15 +23,18 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.pojo.json.*;
+import org.joda.time.DateTime;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import static org.apache.streams.data.util.ActivityUtil.*;
-import static org.apache.streams.data.util.JsonUtil.*;
+import static org.apache.streams.data.util.JsonUtil.jsonToJsonNode;
 
 /**
  * Serializes activity posts
@@ -166,7 +169,7 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
     }
 
     private void addSummary(Activity activity, JsonNode value) {
-        activity.setAdditionalProperties("summary", value.asText());
+        activity.setAdditionalProperty("summary", value.asText());
     }
 
     private void addTitle(Activity activity, JsonNode value) {
@@ -230,7 +233,7 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
     private void addIcon(Activity activity, JsonNode value) {
         Icon icon = new Icon();
         //Apparently the Icon didn't map from the schema very well
-        icon.setAdditionalProperties("url", value.asText());
+        icon.setAdditionalProperty("url", value.asText());
         activity.setIcon(icon);
     }
 
@@ -282,10 +285,10 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
         }
     }
 
-    private static Date parseDate(JsonNode value) {
+    private static DateTime parseDate(JsonNode value) {
         DateFormat fmt = new SimpleDateFormat(DATE_FORMAT);
         try {
-            return fmt.parse(value.asText());
+            return new DateTime(fmt.parse(value.asText()));
         } catch (ParseException e) {
             throw new RuntimeException("Unable to parse date " + value.asText());
         }

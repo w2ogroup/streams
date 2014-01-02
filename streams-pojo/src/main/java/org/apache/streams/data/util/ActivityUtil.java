@@ -50,7 +50,7 @@ public class ActivityUtil {
         Map<String, Object> properties = (Map)activity.getAdditionalProperties().get(EXTENSION_PROPERTY);
         if(properties == null) {
             properties = new HashMap<String, Object>();
-            activity.setAdditionalProperties(EXTENSION_PROPERTY, properties);
+            activity.setAdditionalProperty(EXTENSION_PROPERTY, properties);
         }
         return properties;
     }

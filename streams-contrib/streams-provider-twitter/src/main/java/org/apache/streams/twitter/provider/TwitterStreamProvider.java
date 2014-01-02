@@ -15,13 +15,16 @@ import com.twitter.hbc.httpclient.BasicClient;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
 import com.typesafe.config.Config;
-import org.apache.streams.StreamsProvider;
 import org.apache.streams.config.StreamsConfigurator;
+import org.apache.streams.core.StreamsProvider;
+import org.apache.streams.core.StreamsResultSet;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -133,6 +136,31 @@ public class TwitterStreamProvider /*extends BaseRichSpout*/ implements StreamsP
 
         client.connect();
 
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public StreamsResultSet readCurrent() {
+        return null;
+    }
+
+    @Override
+    public StreamsResultSet readNew(BigInteger sequence) {
+        return null;
+    }
+
+    @Override
+    public StreamsResultSet readRange(DateTime start, DateTime end) {
+        return null;
     }
 //
 //    @Override

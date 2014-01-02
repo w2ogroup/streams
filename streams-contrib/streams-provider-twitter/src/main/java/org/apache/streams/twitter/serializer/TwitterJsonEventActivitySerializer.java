@@ -13,6 +13,7 @@ import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.pojo.json.Generator;
 import org.apache.streams.pojo.json.Icon;
 import org.apache.streams.pojo.json.Provider;
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -81,7 +82,7 @@ public abstract class TwitterJsonEventActivitySerializer implements ActivitySeri
 
     public abstract Activity convert(ObjectNode event);
 
-    public static Date parse(String str) {
+    public static DateTime parse(String str) {
         Date date;
         String dstr;
         DateFormat fmt = new SimpleDateFormat(DATE_FORMAT);
@@ -89,7 +90,7 @@ public abstract class TwitterJsonEventActivitySerializer implements ActivitySeri
         try {
             date = fmt.parse(str);
             dstr = out.format(date);
-            return out.parse(dstr);
+            return new DateTime(out.parse(dstr));
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format", e);
         }

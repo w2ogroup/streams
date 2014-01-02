@@ -33,7 +33,7 @@ public class TwitterStreamConfigurator {
             twitterStreamConfiguration.setFollow(twitter.getLongList("follow"));
         } catch( ConfigException ce ) {}
 
-        twitterStreamConfiguration.setFilter_level(twitter.getString("filter-level"));
+        twitterStreamConfiguration.setFilterLevel(twitter.getString("filter-level"));
         twitterStreamConfiguration.setEndpoint(twitter.getString("endpoint"));
 
         return twitterStreamConfiguration;

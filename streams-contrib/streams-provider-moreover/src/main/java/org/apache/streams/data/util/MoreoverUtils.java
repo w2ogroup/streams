@@ -5,6 +5,7 @@ import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.pojo.json.ActivityObject;
 import org.apache.streams.pojo.json.Actor;
 import org.apache.streams.pojo.json.Provider;
+import org.joda.time.DateTime;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -29,7 +30,7 @@ public class MoreoverUtils {
         activity.setProvider(convert(source));
         activity.setTarget(convertTarget(source));
         activity.setObject(convertObject(article));
-        activity.setPublished(parse(article.getPublishedDate()));
+        activity.setPublished(DateTime.parse(article.getPublishedDate()));
         activity.setContent(article.getContent());
         activity.setTitle(article.getTitle());
         activity.setVerb("posted");
@@ -72,7 +73,7 @@ public class MoreoverUtils {
         object.setObjectType(article.getDataFormat());
         String type = article.getDataFormat().equals("text") ? "article" : article.getDataFormat();
         object.setId(getObjectId(getProviderID(article.getSource().getFeed()), type, article.getId()));
-        object.setPublished(parse(article.getPublishedDate()));
+        object.setPublished(DateTime.parse(article.getPublishedDate()));
         return object;
     }
 
@@ -94,7 +95,7 @@ public class MoreoverUtils {
         actor.setDisplayName(author.getName());
         actor.setUrl(author.getHomeUrl());
         actor.setSummary(author.getDescription());
-        actor.setAdditionalProperties("email", author.getEmail());
+        actor.setAdditionalProperty("email", author.getEmail());
         return actor;
     }
 

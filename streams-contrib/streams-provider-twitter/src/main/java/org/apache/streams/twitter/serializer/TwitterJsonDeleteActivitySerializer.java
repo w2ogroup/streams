@@ -30,7 +30,7 @@ public class TwitterJsonDeleteActivitySerializer extends TwitterJsonEventActivit
         activity.setActor(buildActor(delete));
         activity.setVerb("delete");
         activity.setObject(buildActivityObject(delete));
-        activity.setId(formatId(activity.getVerb(), delete.getDelete().getStatus().getId_str()));
+        activity.setId(formatId(activity.getVerb(), delete.getDelete().getStatus().getIdStr()));
         activity.setProvider(buildProvider(event));
         addTwitterExtension(activity, event);
         return activity;
@@ -38,13 +38,13 @@ public class TwitterJsonDeleteActivitySerializer extends TwitterJsonEventActivit
 
     public Actor buildActor(Delete delete) {
         Actor actor = new Actor();
-        actor.setId(formatId(delete.getDelete().getStatus().getUser_id_str()));
+        actor.setId(formatId(delete.getDelete().getStatus().getUserIdStr()));
         return actor;
     }
 
     public ActivityObject buildActivityObject(Delete delete) {
         ActivityObject actObj = new ActivityObject();
-        actObj.setId(formatId(delete.getDelete().getStatus().getId_str()));
+        actObj.setId(formatId(delete.getDelete().getStatus().getIdStr()));
         actObj.setObjectType("tweet");
         return actObj;
     }

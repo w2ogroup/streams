@@ -26,7 +26,7 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.jsonschema2pojo</groupId>
+            <groupId>org.jsonschema2pojo</groupId>
             <artifactId>jsonschema2pojo-core</artifactId>
         </dependency>
         <dependency>
@@ -117,9 +117,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.3.7</version>
+
                 <configuration>
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
@@ -129,6 +129,7 @@
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>org.apache.streams.twitter.pojo</targetPackage>
                     <useLongIntegers>true</useLongIntegers>
+                    <useJodaDates>true</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>

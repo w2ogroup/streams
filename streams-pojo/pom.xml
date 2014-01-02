@@ -35,9 +35,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.googlecode.jsonschema2pojo</groupId>
+            <groupId>org.jsonschema2pojo</groupId>
             <artifactId>jsonschema2pojo-core</artifactId>
-            <version>0.3.7</version>
+
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
@@ -55,6 +55,26 @@
         <dependency>
             <groupId>com.fasterxml</groupId>
             <artifactId>jackson-xml-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>aalto-xml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>aalto-xml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>nz.net.ultraq.jaxb</groupId>
+            <artifactId>jaxb-utilities</artifactId>
         </dependency>
 
         <dependency>
@@ -129,9 +149,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.3.7</version>
+                <version>0.4.0</version>
                 <configuration>
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <generateBuilders>true</generateBuilders>
@@ -142,6 +162,8 @@
                     </sourcePaths>
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>org.apache.streams.pojo.json</targetPackage>
+                    <useLongIntegers>true</useLongIntegers>
+                    <useJodaDates>true</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>

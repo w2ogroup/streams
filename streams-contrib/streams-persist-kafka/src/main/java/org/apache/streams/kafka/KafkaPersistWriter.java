@@ -6,54 +6,54 @@ import com.typesafe.config.Config;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
-import org.apache.streams.StreamsPersistWriter;
 import org.apache.streams.config.StreamsConfigurator;
-import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.core.StreamsDatum;
+import org.apache.streams.core.StreamsPersistWriter;
 import org.apache.streams.util.GuidUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.Properties;
-import java.util.Random;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class KafkaPersistWriter implements StreamsPersistWriter, Serializable, Runnable {
+public class KafkaPersistWriter implements StreamsPersistWriter, Serializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPersistWriter.class);
 
-    private BlockingQueue<Object> outqueue;
+    protected volatile Queue<StreamsDatum> persistQueue;
 
     private ObjectMapper mapper = new ObjectMapper();
 
     private KafkaConfiguration config;
 
-    private Producer<String, String> producer;
+    private Producer<String, StreamsDatum> producer;
 
     public KafkaPersistWriter() {
         Config config = StreamsConfigurator.config.getConfig("kafka");
         this.config = KafkaConfigurator.detectConfiguration(config);
-        this.outqueue = new LinkedBlockingQueue<Object>(1000);
+        this.persistQueue  = new ConcurrentLinkedQueue<StreamsDatum>();
     }
 
-    public KafkaPersistWriter(BlockingQueue<Object> outqueue) {
+    public KafkaPersistWriter(Queue<StreamsDatum> persistQueue) {
         Config config = StreamsConfigurator.config.getConfig("kafka");
         this.config = KafkaConfigurator.detectConfiguration(config);
-        this.outqueue = outqueue;
+        this.persistQueue = persistQueue;
     }
 
     public KafkaPersistWriter(KafkaConfiguration config) {
         this.config = config;
-        this.outqueue = new LinkedBlockingQueue<Object>(1000);
+        this.persistQueue = new ConcurrentLinkedQueue<StreamsDatum>();
     }
 
-    public KafkaPersistWriter(KafkaConfiguration config, BlockingQueue<Object> outqueue) {
+    public KafkaPersistWriter(KafkaConfiguration config, Queue<StreamsDatum> persistQueue) {
         this.config = config;
-        this.outqueue = outqueue;
+        this.persistQueue = persistQueue;
     }
 
-    private void setup() {
+    @Override
+    public void start() {
         Properties props = new Properties();
 
         props.put("metadata.broker.list", config.getBrokerlist());
@@ -63,56 +63,28 @@ public class KafkaPersistWriter implements StreamsPersistWriter, Serializable, R
 
         ProducerConfig config = new ProducerConfig(props);
 
-        producer = new Producer<String, String>(config);
+        producer = new Producer<String, StreamsDatum>(config);
     }
 
-    public void save(Object entry) {
+    @Override
+    public void stop() {
+        producer.close();
+    }
+
+    @Override
+    public void write(StreamsDatum entry) {
 
         try {
             String text = mapper.writeValueAsString(entry);
 
             String hash = GuidUtils.generateGuid(text);
 
-            KeyedMessage<String, String> data = new KeyedMessage<String, String>(config.getTopic(), hash, text);
+            KeyedMessage<String, StreamsDatum> data = new KeyedMessage<String, StreamsDatum>(config.getTopic(), hash, entry);
 
             producer.send(data);
 
         } catch (JsonProcessingException e) {
             LOGGER.warn("save: {}", e);
         }// put
-    }
-
-    public void save(Activity entry) {
-
-        try {
-            String text = mapper.writeValueAsString(entry);
-
-            String hash = GuidUtils.generateGuid(entry.getId());
-
-            KeyedMessage<String, String> data = new KeyedMessage<String, String>(config.getTopic(), hash, text);
-
-            producer.send(data);
-
-        } catch (JsonProcessingException e) {
-            LOGGER.warn("save: {}", e);
-        }// put
-
-    }
-
-    @Override
-    public void run() {
-
-        setup();
-
-        while(true) {
-            try {
-                Object entry = outqueue.take();
-                save(entry);
-                Thread.sleep(new Random().nextInt(100));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }

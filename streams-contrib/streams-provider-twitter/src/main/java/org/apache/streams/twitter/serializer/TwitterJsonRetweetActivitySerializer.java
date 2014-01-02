@@ -36,14 +36,14 @@ public class TwitterJsonRetweetActivitySerializer extends TwitterJsonEventActivi
         Activity activity = new Activity();
         activity.setActor(buildActor(retweet));
         activity.setVerb("share");
-        activity.setObject(buildActivityObject(retweet.getRetweeted_status()));
-        activity.setId(formatId(activity.getVerb(), retweet.getId_str()));
-        activity.setPublished(parse(retweet.getCreated_at()));
+        activity.setObject(buildActivityObject(retweet.getRetweetedStatus()));
+        activity.setId(formatId(activity.getVerb(), retweet.getIdStr()));
+        activity.setPublished(parse(retweet.getCreatedAt()));
         activity.setGenerator(buildGenerator(event));
         activity.setIcon(getIcon(event));
         activity.setProvider(buildProvider(event));
         activity.setTitle("");
-        activity.setContent(retweet.getRetweeted_status().getText());
+        activity.setContent(retweet.getRetweetedStatus().getText());
         addTwitterExtension(activity, event);
         addLocationExtension(activity, retweet);
         return activity;
@@ -52,9 +52,9 @@ public class TwitterJsonRetweetActivitySerializer extends TwitterJsonEventActivi
     public static Actor buildActor(Tweet tweet) {
         Actor actor = new Actor();
         User user = tweet.getUser();
-        actor.setId(formatId(user.getId_str(), tweet.getId_str()));
-        actor.setDisplayName(user.getScreen_name());
-        actor.setId(user.getId_str());
+        actor.setId(formatId(user.getIdStr(), tweet.getIdStr()));
+        actor.setDisplayName(user.getScreenName());
+        actor.setId(user.getIdStr());
         if (user.getUrl()!=null){
             actor.setUrl(user.getUrl());
         }
@@ -63,7 +63,7 @@ public class TwitterJsonRetweetActivitySerializer extends TwitterJsonEventActivi
 
     public static ActivityObject buildActivityObject(Tweet tweet) {
         ActivityObject actObj = new ActivityObject();
-        actObj.setId(formatId(tweet.getId_str()));
+        actObj.setId(formatId(tweet.getIdStr()));
         actObj.setObjectType("tweet");
         return actObj;
     }
@@ -71,7 +71,7 @@ public class TwitterJsonRetweetActivitySerializer extends TwitterJsonEventActivi
     public static void addLocationExtension(Activity activity, Retweet retweet) {
         Map<String, Object> extensions = ensureExtensions(activity);
         Map<String, Object> location = new HashMap<String, Object>();
-        location.put("id", formatId(retweet.getId_str()));
+        location.put("id", formatId(retweet.getIdStr()));
         location.put("coordinates", retweet.getCoordinates());
         extensions.put("location", location);
     }
