@@ -23,6 +23,7 @@ package org.apache.streams.gnip.facebook.test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.apache.commons.lang.StringUtils;
 import org.apache.streams.gnip.powertrack.GnipActivityFixer;
 import org.apache.streams.pojo.json.Activity;
 import org.json.JSONObject;
@@ -71,25 +72,28 @@ public class FacebookEDCAsActivityTest {
         try {
             while (br.ready()) {
                 String line = br.readLine();
-                //LOGGER.debug(line);
-                Object activityObject = xmlMapper.readValue(line, Object.class);
+                if(!StringUtils.isEmpty(line))
+                {
+                    LOGGER.debug(line);
+                    Object activityObject = xmlMapper.readValue(line, Object.class);
 
-                String jsonString = jsonMapper.writeValueAsString(activityObject);
+                    String jsonString = jsonMapper.writeValueAsString(activityObject);
 
-                JSONObject jsonObject = new JSONObject(jsonString);
+                    JSONObject jsonObject = new JSONObject(jsonString);
 
-                JSONObject fixedObject = GnipActivityFixer.fix(jsonObject);
+                    JSONObject fixedObject = GnipActivityFixer.fix(jsonObject);
 
-                Activity activity = null;
-                try {
-                    activity = jsonMapper.readValue(fixedObject.toString(), Activity.class);
-                } catch( Exception e ) {
-                    LOGGER.error(jsonObject.toString());
-                    LOGGER.error(fixedObject.toString());
-                    e.printStackTrace();
-                    Assert.fail();
+                    Activity activity = null;
+                    try {
+                        activity = jsonMapper.readValue(fixedObject.toString(), Activity.class);
+                    } catch( Exception e ) {
+                        LOGGER.error(jsonObject.toString());
+                        LOGGER.error(fixedObject.toString());
+                        e.printStackTrace();
+                        Assert.fail();
+                    }
+                    //LOGGER.info(activity);
                 }
-                //LOGGER.info(activity);
             }
         } catch( Exception e ) {
             LOGGER.error(e.getMessage());

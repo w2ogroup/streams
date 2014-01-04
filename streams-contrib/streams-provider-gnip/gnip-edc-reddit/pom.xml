@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streams-pojo-gplus</artifactId>
+    <artifactId>gnip-edc-reddit</artifactId>
 
     <dependencies>
 
@@ -24,13 +24,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.1.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -75,6 +73,7 @@
             <artifactId>streams-provider-gnip</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -97,6 +96,12 @@
                 <configuration>
                     <filesets>
                         <fileset>
+                            <directory>src/main/java/com/reddit/pojo</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </fileset>
+                        <fileset>
                             <directory>target</directory>
                             <includes>
                                 <include>**/*</include>
@@ -106,27 +111,27 @@
                 </configuration>
             </plugin>
             <!--<plugin>-->
-            <!--<groupId>org.jsonschema2pojo</groupId>-->
-            <!--<artifactId>jsonschema2pojo-maven-plugin</artifactId>-->
-            <!---->
-            <!--<configuration>-->
-            <!--<addCompileSourceRoot>true</addCompileSourceRoot>-->
-            <!--<generateBuilders>true</generateBuilders>-->
-            <!--<sourcePaths>-->
-            <!--<sourcePath>src/main/jsonschema/com/reddit</sourcePath>-->
-            <!--</sourcePaths>-->
-            <!--<outputDirectory>src/main/java</outputDirectory>-->
-            <!--<targetPackage>org.apache.streams</targetPackage>-->
+                <!--<groupId>org.jsonschema2pojo</groupId>-->
+                <!--<artifactId>jsonschema2pojo-maven-plugin</artifactId>-->
+                <!---->
+                <!--<configuration>-->
+                    <!--<addCompileSourceRoot>true</addCompileSourceRoot>-->
+                    <!--<generateBuilders>true</generateBuilders>-->
+                    <!--<sourcePaths>-->
+                        <!--<sourcePath>src/main/jsonschema/com/reddit</sourcePath>-->
+                    <!--</sourcePaths>-->
+                    <!--<outputDirectory>src/main/java</outputDirectory>-->
+                    <!--<targetPackage>org.apache.streams</targetPackage>-->
             <!--<useLongIntegers>true</useLongIntegers>-->
             <!--<useJodaDates>true</useJodaDates>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<goals>-->
-            <!--<goal>generate</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
             <!--</plugin>-->
         </plugins>
     </build>

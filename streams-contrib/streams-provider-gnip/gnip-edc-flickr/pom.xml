@@ -3,13 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.apache.streams</groupId>
         <artifactId>streams-provider-gnip</artifactId>
+        <groupId>org.apache.streams</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gnip-edc-instagram</artifactId>
+    <artifactId>gnip-edc-flickr</artifactId>
+
     <dependencies>
 
         <dependency>
@@ -31,6 +32,23 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-pojo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>gnip-powertrack</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>aalto-xml</artifactId>
         </dependency>
     </dependencies>
 
@@ -54,32 +72,38 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
+                        <id>add-source-jaxb2</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
                         </goals>
                         <configuration>
                             <sources>
-                                <source>target/generated-sources/jsonschema2pojo/**/*.java</source>
+                                <source>target/generated-sources/jaxb2</source>
                             </sources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.jsonschema2pojo</groupId>
-                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
                 <configuration>
-                    <addCompileSourceRoot>true</addCompileSourceRoot>
-                    <generateBuilders>true</generateBuilders>
-                    <sourcePaths>
-                        <sourcePath>src/main/jsonschema/com/instagram</sourcePath>
-                    </sourcePaths>
-                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
-                    <targetPackage>com.instagram</targetPackage>
-                    <useLongIntegers>true</useLongIntegers>
-                    <useJodaDates>true</useJodaDates>
+                    <schemaDirectory>src/main/xmlschema/com/flickr/</schemaDirectory>
+                    <generateDirectory>target/generated-sources/jaxb2</generateDirectory>
+                    <verbose>true</verbose>
+                    <debug>true</debug>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <forceRegenerate>true</forceRegenerate>
+                    <removeOldOutput>false</removeOldOutput>
+                    <generatePackage>com.flickr.api</generatePackage>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                            <version>0.6.5</version>
+                        </plugin>
+                    </plugins>
                 </configuration>
                 <executions>
                     <execution>

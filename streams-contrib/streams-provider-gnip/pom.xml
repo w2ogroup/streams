@@ -19,8 +19,12 @@
 
     <modules>
         <module>gnip-powertrack</module>
-        <module>gnip-edc-instagram</module>
         <module>gnip-edc-facebook</module>
+        <module>gnip-edc-flickr</module>
+        <module>gnip-edc-googleplus</module>
+        <module>gnip-edc-instagram</module>
+        <module>gnip-edc-reddit</module>
+        <module>gnip-edc-youtube</module>
     </modules>
 
     <dependencyManagement>

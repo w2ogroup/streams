@@ -3,6 +3,7 @@ package org.apache.streams.gnip.facebook.test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.gnip.api.Entry;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -23,37 +24,32 @@ public class FacebookEDCSerDeTest {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FacebookEDCSerDeTest.class);
 
-    private ObjectMapper mapper = new ObjectMapper();
-//    XmlMapper mapper = new XmlMapper();
+    XmlMapper xmlMapper = new XmlMapper();
 
     @Test
     public void Tests()   throws Exception
     {
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
-        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        xmlMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
         InputStream is = FacebookEDCSerDeTest.class.getResourceAsStream("/FacebookEDC.xml");
         if(is == null) System.out.println("null");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
-        XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
         xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        ObjectMapper jsonMapper = new ObjectMapper();
-
         try {
             while (br.ready()) {
                 String line = br.readLine();
-                //LOGGER.debug(line);
+                LOGGER.debug(line);
 
-                Object activityObject = xmlMapper.readValue(line, Object.class);
+                Entry xmlObject = xmlMapper.readValue(line, Entry.class);
 
-                String jsonObject = jsonMapper.writeValueAsString(activityObject);
+                String xml = xmlMapper.writeValueAsString(xmlObject);
 
-                //LOGGER.debug(jsonObject);
             }
         } catch( Exception e ) {
             LOGGER.error(e.getMessage());
