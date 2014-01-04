@@ -57,19 +57,18 @@ public class GPlusEDCAsActivityTest {
                 } catch( Exception e ) {
                     LOGGER.error(line);
                     e.printStackTrace();
-                    Assert.fail("Exception on redditSerializer.deserialize(jsonString) : " + e);
+                    Assert.fail("Exception on gplus Serializer.deserialize(jsonString) : " + e);
                 }
 
                 try {
                     String activityString = gplusSerializer.serialize(activity);
-                    System.out.println(jsonMapper.writeValueAsString(activity));
-                }catch (Exception e ){
+                    LOGGER.debug(activityString);
+                } catch (Exception e ){
                     LOGGER.error(activity.toString());
                     e.printStackTrace();
-                    Assert.fail("Exception on gplusSerializer.serialize(activity) : " + e);
+                    Assert.fail("Exception on gplus Serializer.serialize(activity) : " + e);
                 }
 
-                //LOGGER.info(activity);
             }
         } catch( Exception e ) {
             System.out.println("Exception: " + e);

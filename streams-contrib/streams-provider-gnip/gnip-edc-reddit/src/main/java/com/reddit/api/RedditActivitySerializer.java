@@ -1,10 +1,10 @@
 package com.reddit.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gnip.api.GnipActivityFixer;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.data.util.ActivityUtil;
+import org.apache.streams.gnip.powertrack.GnipActivityFixer;
 import org.apache.streams.pojo.json.Activity;
 import org.json.JSONObject;
 import org.slf4j.Logger;
