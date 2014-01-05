@@ -1,4 +1,4 @@
-package org.apache.streams.data;
+package org.apache.streams.facebook.test;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

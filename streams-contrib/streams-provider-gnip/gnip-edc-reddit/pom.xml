@@ -123,7 +123,7 @@
                     <!--<outputDirectory>src/main/java</outputDirectory>-->
                     <!--<targetPackage>org.apache.streams</targetPackage>-->
             <!--<useLongIntegers>true</useLongIntegers>-->
-            <!--<useJodaDates>true</useJodaDates>-->
+            <!--<useJodaDates>false</useJodaDates>-->
                 <!--</configuration>-->
                 <!--<executions>-->
                     <!--<execution>-->

@@ -115,7 +115,7 @@
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>org.apache.streams.kafka.pojo</targetPackage>
                     <useLongIntegers>true</useLongIntegers>
-                    <useJodaDates>true</useJodaDates>
+                    <useJodaDates>false</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>

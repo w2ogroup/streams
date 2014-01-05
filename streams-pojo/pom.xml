@@ -37,7 +37,6 @@
         <dependency>
             <groupId>org.jsonschema2pojo</groupId>
             <artifactId>jsonschema2pojo-core</artifactId>
-
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
@@ -163,7 +162,7 @@
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>org.apache.streams.pojo.json</targetPackage>
                     <useLongIntegers>true</useLongIntegers>
-                    <useJodaDates>true</useJodaDates>
+                    <useJodaDates>false</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>

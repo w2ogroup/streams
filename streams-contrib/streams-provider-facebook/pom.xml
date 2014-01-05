@@ -89,7 +89,7 @@
                     <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
                     <targetPackage>com.facebook</targetPackage>
                     <useLongIntegers>true</useLongIntegers>
-                    <useJodaDates>true</useJodaDates>
+                    <useJodaDates>false</useJodaDates>
                 </configuration>
                 <executions>
                     <execution>

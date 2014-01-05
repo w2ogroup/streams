@@ -28,10 +28,7 @@ import org.joda.time.DateTime;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.apache.streams.data.util.ActivityUtil.*;
 import static org.apache.streams.data.util.JsonUtil.jsonToJsonNode;
@@ -285,10 +282,11 @@ public class FacebookPostActivitySerializer implements ActivitySerializer {
         }
     }
 
-    private static DateTime parseDate(JsonNode value) {
+    private static Date parseDate(JsonNode value) {
         DateFormat fmt = new SimpleDateFormat(DATE_FORMAT);
         try {
-            return new DateTime(fmt.parse(value.asText()));
+            return
+                    fmt.parse(value.asText());
         } catch (ParseException e) {
             throw new RuntimeException("Unable to parse date " + value.asText());
         }

@@ -82,7 +82,7 @@ public abstract class TwitterJsonEventActivitySerializer implements ActivitySeri
 
     public abstract Activity convert(ObjectNode event);
 
-    public static DateTime parse(String str) {
+    public static Date parse(String str) {
         Date date;
         String dstr;
         DateFormat fmt = new SimpleDateFormat(DATE_FORMAT);
@@ -90,7 +90,7 @@ public abstract class TwitterJsonEventActivitySerializer implements ActivitySeri
         try {
             date = fmt.parse(str);
             dstr = out.format(date);
-            return new DateTime(out.parse(dstr));
+            return out.parse(dstr);
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format", e);
         }

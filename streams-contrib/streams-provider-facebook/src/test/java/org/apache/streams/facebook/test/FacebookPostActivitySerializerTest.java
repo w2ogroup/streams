@@ -15,13 +15,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.streams.data;
+package org.apache.streams.facebook.test;
 
 import com.facebook.api.FacebookPostActivitySerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.streams.data.ActivitySerializer;
 import org.apache.streams.data.util.JsonUtil;
 import org.apache.streams.pojo.json.Activity;
 import org.junit.Before;
