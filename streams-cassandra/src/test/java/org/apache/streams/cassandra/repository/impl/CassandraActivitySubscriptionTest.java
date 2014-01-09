@@ -33,7 +33,7 @@ public class CassandraActivitySubscriptionTest {
 
     @Before
     public void setup() {
-        repository = new CassandraSubscriptionRepository();
+//        repository = new CassandraSubscriptionRepository();
     }
 
     @Ignore

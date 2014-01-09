@@ -93,7 +93,7 @@ public class ActivityConsumerRouter extends RouteBuilder implements ActivityCons
 
                 } else{
 
-                    exchange.getOut().setBody(existingConsumer.getInRoute());
+                    exchange.getOut().setBody(configuration.getBaseUrlPath() + existingConsumer.getInRoute());
                 }
 
         }else{
