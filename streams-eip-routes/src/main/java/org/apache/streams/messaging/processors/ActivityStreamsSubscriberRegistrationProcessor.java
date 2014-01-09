@@ -1,3 +1,21 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.apache.streams.messaging.processors;
 
 import org.apache.camel.Exchange;
@@ -13,7 +31,11 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class ActivityStreamsSubscriberRegistrationProcessor implements Processor{
     private static final transient Log LOG = LogFactory.getLog(ActivityStreamsSubscriberRegistrationProcessor.class);
-    private static SubscriptionService subscriptionService = new CassandraSubscriptionService();
+    private SubscriptionService subscriptionService;
+
+    public ActivityStreamsSubscriberRegistrationProcessor(SubscriptionService subscriptionService){
+        this.subscriptionService = subscriptionService;
+    }
 
     public void process(Exchange exchange){
         LOG.info("processing the subscriber...");
