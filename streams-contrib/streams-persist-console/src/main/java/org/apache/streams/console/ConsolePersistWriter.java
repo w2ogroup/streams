@@ -8,6 +8,7 @@ import org.apache.streams.core.StreamsResultSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -27,12 +28,22 @@ public class ConsolePersistWriter implements StreamsPersistWriter {
 
     @Override
     public void start() {
-
+        new Thread(new ConsolePersistWriterTask(this)).start();
     }
 
     @Override
     public void stop() {
 
+    }
+
+    @Override
+    public void setPersistQueue(Queue<StreamsDatum> persistQueue) {
+        this.persistQueue = persistQueue;
+    }
+
+    @Override
+    public Queue<StreamsDatum> getPersistQueue() {
+        return this.persistQueue;
     }
 
     @Override
