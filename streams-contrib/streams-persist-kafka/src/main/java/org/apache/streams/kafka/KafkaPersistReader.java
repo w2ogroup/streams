@@ -1,11 +1,18 @@
 package org.apache.streams.kafka;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.typesafe.config.Config;
 import kafka.consumer.ConsumerConfig;
+import kafka.consumer.KafkaStream;
+import kafka.consumer.TopicFilter;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.javaapi.consumer.SimpleConsumer;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.ProducerConfig;
+import kafka.serializer.StringDecoder;
+import kafka.utils.VerifiableProperties;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.core.StreamsPersistReader;
@@ -17,9 +24,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Properties;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by sblackmon on 1/8/14.
@@ -32,7 +40,14 @@ public class KafkaPersistReader implements StreamsPersistReader, Serializable {
 
     protected volatile Queue<StreamsDatum> persistQueue;
 
-    private ConsumerConnector consumer;
+    protected ObjectMapper mapper = new ObjectMapper();
+
+    protected ConsumerConnector consumerConnector;
+    protected Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
+    protected Map<String, List<KafkaStream<String, String>>> consumerMap;
+    protected List<KafkaStream<String, String>> consumerStreams;
+
+    protected ExecutorService executor;
 
     public KafkaPersistReader() {
         Config config = StreamsConfigurator.config.getConfig("kafka");
@@ -59,11 +74,22 @@ public class KafkaPersistReader implements StreamsPersistReader, Serializable {
     public void start() {
 
         Properties props = new Properties();
+        VerifiableProperties vprops = new VerifiableProperties(props);
 
         props.put("zookeeper.connect", this.config.getZkconnect());
         props.put("group.id", this.config.getTopic());
 
-        consumer = kafka.consumer.Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
+        consumerConnector = kafka.consumer.Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
+
+        topicCountMap.put(this.config.getTopic(), new Integer(10));
+
+        consumerMap = consumerConnector.createMessageStreams(topicCountMap, new StringDecoder(vprops), new StringDecoder(vprops));
+
+        executor = Executors.newFixedThreadPool(10);
+
+        for (final KafkaStream stream : consumerStreams) {
+            executor.submit(new KafkaPersistReaderTask(this, stream));
+        }
 
     }
 
@@ -85,6 +111,16 @@ public class KafkaPersistReader implements StreamsPersistReader, Serializable {
     @Override
     public void stop() {
 
+    }
+
+    @Override
+    public void setPersistQueue(Queue<StreamsDatum> persistQueue) {
+        this.persistQueue = persistQueue;
+    }
+
+    @Override
+    public Queue<StreamsDatum> getPersistQueue() {
+        return this.persistQueue;
     }
 
     @Override
