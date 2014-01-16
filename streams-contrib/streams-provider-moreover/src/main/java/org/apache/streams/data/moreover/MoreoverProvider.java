@@ -41,9 +41,9 @@ public class MoreoverProvider implements StreamsProvider {
 
     @Override
     public synchronized void start() {
-        logger.trace("Starting Producer");
+        logger.info("Starting Producer");
         if(!started) {
-            logger.trace("Producer not started.  Initializing");
+            logger.info("Producer not started.  Initializing");
             for(MoreoverKeyData key : keys) {
                 MoreoverProviderTask task = new MoreoverProviderTask(key.getId(), key.getKey(), this.providerQueue, key.getStartingSequence());
                 ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();

@@ -19,7 +19,7 @@ public class KafkaConfigurator {
         KafkaConfiguration kafkaConfiguration = new KafkaConfiguration();
 
         kafkaConfiguration.setBrokerlist(brokerlist);
-        kafkaConfiguration.setBrokerlist(brokerlist);
+        kafkaConfiguration.setTopic(topic);
 
         return kafkaConfiguration;
     }
