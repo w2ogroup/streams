@@ -37,8 +37,6 @@ public class GMailImapProviderTask implements Runnable {
         this.provider = provider;
     }
 
-    ObjectMapper mapper = new ObjectMapper();
-
     @Override
     public void run() {
 
@@ -52,14 +50,6 @@ public class GMailImapProviderTask implements Runnable {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, Boolean.FALSE);
-
-        mapper.addMixInAnnotations(IMAPSSLStore.class, MessageMixIn.class);
-        mapper.addMixInAnnotations(IMAPFolder.class, MessageMixIn.class);
-        mapper.addMixInAnnotations(IMAPMessage.class, MessageMixIn.class);
-        mapper.addMixInAnnotations(MimeMultipart.class, MessageMixIn.class);
-        mapper.addMixInAnnotations(JavaMailGmailMessage.class, MessageMixIn.class);
-
         final List<GmailMessage> messages = this.provider.imapClient.getMessagesBy(
                 GmailClient.EmailSearchStrategy.DATE_GT,
                 calendar.getTime().toString()
@@ -68,9 +58,8 @@ public class GMailImapProviderTask implements Runnable {
         for (GmailMessage message : messages) {
 
             Activity activity;
-            GMailMessageActivitySerializer serializer = new GMailMessageActivitySerializer();
+            GMailMessageActivitySerializer serializer = new GMailMessageActivitySerializer( this.provider );
             activity = serializer.deserialize(message);
-            //messageAsText = mapper.writeValueAsString(message);
             StreamsDatum entry = new StreamsDatum(activity);
             this.provider.getProviderQueue().offer(entry);
 
@@ -78,30 +67,5 @@ public class GMailImapProviderTask implements Runnable {
 
     }
 
-    interface MessageMixIn {
-        @JsonManagedReference
-        @JsonIgnore
-
-        IMAPSSLStore getDefaultFolder(); // we don't need it!
-        @JsonManagedReference
-        @JsonIgnore
-        IMAPSSLStore getPersonalNamespaces(); // we don't need it!
-        @JsonManagedReference
-        @JsonIgnore
-        IMAPFolder getStore(); // we don't need it!
-//        @JsonManagedReference
-//        @JsonIgnore
-//        @JsonBackReference
-        //IMAPFolder getParent(); // we don't need it!
-        @JsonManagedReference
-        @JsonIgnore
-        @JsonBackReference
-        IMAPMessage getFolder(); // we don't need it!
-        @JsonManagedReference
-        @JsonIgnore
-        @JsonProperty("parent")
-        @JsonBackReference
-        MimeMultipart getParent();
-    }
 
 }
