@@ -42,21 +42,13 @@ public class SysomosXmlSerDeTest {
 
         xmlMapper = new XmlMapper(f, module);
 
-        xmlMapper
-                .configure(
-                        DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,
-                        Boolean.TRUE);
-        xmlMapper
-                .configure(
-                        DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,
-                        Boolean.TRUE);
-        xmlMapper
-                .configure(
-                        DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY,
-                        Boolean.TRUE);
-        xmlMapper.configure(
-                DeserializationFeature.READ_ENUMS_USING_TO_STRING,
-                Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, Boolean.FALSE);
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, Boolean.FALSE);
+        xmlMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, Boolean.TRUE);
+        xmlMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, Boolean.TRUE);
 
     }
 

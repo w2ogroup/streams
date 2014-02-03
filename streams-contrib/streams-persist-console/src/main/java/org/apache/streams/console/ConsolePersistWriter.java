@@ -8,6 +8,8 @@ import org.apache.streams.core.StreamsResultSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Queue;
 import java.util.Random;
@@ -28,6 +30,7 @@ public class ConsolePersistWriter implements StreamsPersistWriter {
 
     @Override
     public void start() {
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         new Thread(new ConsolePersistWriterTask(this)).start();
     }
 
